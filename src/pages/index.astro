@@ -1,0 +1,39 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+---
+
+<Layout title="Felix Blaimauer">
+  <main>
+    <Image
+      src="/src/assets/undraw_under_construction.svg"
+      alt="Felix Blaimauer"
+      width="326"
+      height="200"
+    />
+    <h1>Felix Blaimauer</h1>
+    <p class="info-text">Site is currently under construction.</p>
+    <p>Check back soon!</p>
+  </main>
+</Layout>
+
+<style>
+  main {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .info-text {
+    font-size: 1.4rem;
+  }
+
+  p {
+    margin: 0.3rem;
+  }
+</style>
