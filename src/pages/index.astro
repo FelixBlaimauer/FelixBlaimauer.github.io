@@ -6,7 +6,7 @@ import { Image } from 'astro:assets';
 <Layout title="Felix Blaimauer">
   <main>
     <Image
-      src="/src/assets/undraw_under_construction.svg"
+      src={import('/src/assets/undraw_under_construction.svg')}
       alt="Felix Blaimauer"
       width="326"
       height="200"
