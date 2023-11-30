@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Ebene_2" data-name="Ebene 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 372 529">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #fff;
+        stroke-linecap: round;
+        stroke-miterlimit: 10;
+        stroke-width: 6px;
+      }
+
+      .cls-2 {
+        fill: #fff;
+        stroke-width: 0px;
+      }
+    </style>
+  </defs>
+  <g id="Text">
+    <circle class="cls-2" cx="187.5" cy="264.5" r="5.5"/>
+    <line class="cls-1" x1="187" y1="56" x2="187" y2="237"/>
+    <line class="cls-1" x1="187" y1="3" x2="187" y2="46"/>
+    <line class="cls-1" x1="187" y1="473" x2="187" y2="292"/>
+    <line class="cls-1" x1="187" y1="526" x2="187" y2="483"/>
+    <line class="cls-1" x1="57.54" y1="138.625" x2="162.625" y2="243.71"/>
+    <line class="cls-1" x1="40.958" y1="122.042" x2="49.125" y2="130.21"/>
+    <line class="cls-1" x1="32.958" y1="114.042" x2="32.625" y2="113.71"/>
+    <line class="cls-1" x1="316.71" y1="138.625" x2="211.625" y2="243.71"/>
+    <line class="cls-1" x1="333.292" y1="122.042" x2="325.125" y2="130.21"/>
+    <line class="cls-1" x1="341.292" y1="114.042" x2="341.625" y2="113.71"/>
+    <line class="cls-1" x1="316.71" y1="396.795" x2="211.625" y2="291.71"/>
+    <line class="cls-1" x1="333.292" y1="413.377" x2="325.125" y2="405.21"/>
+    <line class="cls-1" x1="341.292" y1="421.377" x2="341.625" y2="421.71"/>
+    <line class="cls-1" x1="57.54" y1="396.795" x2="162.625" y2="291.71"/>
+    <line class="cls-1" x1="40.958" y1="413.377" x2="49.125" y2="405.21"/>
+    <line class="cls-1" x1="32.958" y1="421.377" x2="32.625" y2="421.71"/>
+    <line class="cls-1" x1="160" y1="264.5" x2="33" y2="264.5"/>
+    <line class="cls-1" x1="21" y1="265" x2="3" y2="265"/>
+    <line class="cls-1" x1="212" y1="265" x2="339" y2="265"/>
+    <line class="cls-1" x1="351" y1="264.5" x2="369" y2="264.5"/>
+  </g>
+</svg>
