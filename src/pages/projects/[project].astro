@@ -1,0 +1,14 @@
+---
+import type { GetStaticPaths } from 'astro';
+export const getStaticPaths = (() => {
+  return [
+    {
+      params: {
+        project: 'quetzal-vpn',
+      },
+    },
+  ];
+}) satisfies GetStaticPaths;
+
+const { project } = Astro.params;
+---

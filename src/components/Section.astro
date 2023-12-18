@@ -1,0 +1,27 @@
+---
+import { Image } from 'astro:assets';
+import { twMerge } from 'tailwind-merge';
+import type { ClassProps } from '../interfaces/ClassProps';
+
+interface Props extends ClassProps {
+  name: string;
+}
+
+const { name, class: className } = Astro.props;
+const id = `${name.toLowerCase()}`;
+const href = `#${id}}`;
+---
+
+<div class={twMerge('px-10', className)}>
+  <div class="flex text-white-30 text-body-sm font-medium">
+    <h2 id={id}>{name}</h2>
+    <a href={href}>
+      <Image
+        class="stroke-sky-400 fill-sky-400 text-sky-400"
+        src={import('/src/assets/icons/link.svg')}
+        alt="Link"
+      />
+    </a>
+  </div>
+  <slot />
+</div>

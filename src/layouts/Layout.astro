@@ -1,5 +1,6 @@
 ---
-import Navbar from '../components/Navbar';
+import { ViewTransitions, fade } from 'astro:transitions';
+import Footer from '../components/Footer';
 
 interface Props {
   title: string;
@@ -9,7 +10,7 @@ const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" transition:animate="fade">
   <head>
     <meta charset="utf-8" />
     <meta
@@ -20,48 +21,62 @@ const { title } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <ViewTransitions />
+
+    <style is:global>
+      @font-face {
+        font-family: 'Outfit';
+        src: url('/fonts/Outfit/Outfit-Regular.ttf') format('truetype');
+        font-weight: 400;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: 'Outfit';
+        src: url('/fonts/Outfit/Outfit-Medium.ttf') format('truetype');
+        font-weight: 500;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: 'Outfit';
+        src: url('/fonts/Outfit/Outfit-SemiBold.ttf') format('truetype');
+        font-weight: 600;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: 'Outfit';
+        src: url('/fonts/Outfit/Outfit-Bold.ttf') format('truetype');
+        font-weight: 700;
+        font-style: normal;
+      }
+
+      ::-moz-selection {
+        background-color: #ffda5533;
+      }
+
+      ::selection {
+        background: #ffda5533;
+      }
+
+      body {
+        background: #1d1d1d;
+        color: #ffffe6;
+        overflow-x: hidden;
+        background: linear-gradient(78deg, red, yellow),
+          linear-gradient(68, blue, green);
+      }
+
+      em {
+        font-style: normal;
+        font-weight: 600;
+        @apply text-white-90;
+      }
+    </style>
   </head>
   <body>
-    <Navbar />
-
-    <div class="pt-20">
-      <slot />
-    </div>
+    <slot />
+    <Footer class="mt-10" />
   </body>
 </html>
-
-<style is:global>
-  @font-face {
-    font-family: 'Outfit';
-    src: url('/fonts/Outfit/Outfit-Regular.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: 'Outfit';
-    src: url('/fonts/Outfit/Outfit-Medium.ttf') format('truetype');
-    font-weight: 500;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: 'Outfit';
-    src: url('/fonts/Outfit/Outfit-SemiBold.ttf') format('truetype');
-    font-weight: 600;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: 'Outfit';
-    src: url('/fonts/Outfit/Outfit-Bold.ttf') format('truetype');
-    font-weight: 700;
-    font-style: normal;
-  }
-
-  body {
-    background: #1d1d1d;
-    color: #ffffe6;
-    overflow-x: hidden;
-  }
-</style>

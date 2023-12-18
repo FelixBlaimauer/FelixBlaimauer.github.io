@@ -6,15 +6,15 @@ interface NavbarProps {
 
 export default function Navbar({ compact }: NavbarProps) {
   const routes = [
-    { name: 'About', path: '#about' },
-    { name: 'Projects', path: '#projects' },
-    { name: 'Contact', path: '#contact' },
+    { name: 'About', path: '/#about' },
+    { name: 'Projects', path: '/projects/project' },
+    { name: 'Contact', path: '/#contact' },
   ];
 
   return (
-    <nav class="fixed top-0 left-0 w-full px-8 py-4 border-b border-white flex justify-between items-center">
-      <div class="h-12 overflow-hidden">
-        <div class="flex flex-col text-body-sm font-extrabold text-white-70 hover:text-white-90 leading-tighter transition hover:-translate-y-6">
+    <nav class="fixed backdrop-blur-sm top-0 left-0 w-full px-8 py-3 border-b border-white-30 flex justify-between items-center z-10">
+      <div class="h-[38pt] overflow-hidden">
+        <div class="flex flex-col text-body-sm font-extrabold text-white-70 hover:text-white-90 leading-tighter transition hover:-translate-y-1/3">
           <span>Felix</span>
           <span>Blaimauer</span>
           <span>Felix</span>

@@ -9,8 +9,9 @@ export default {
         sans: ['Outfit', ...defaultTheme.fontFamily.sans],
       },
       fontSize: {
-        'body-sm': '26px',
-        'display-xl': '82px',
+        'body-sm': '19pt',
+        'body-lg': '26pt',
+        'display-xl': '64pt',
       },
       colors: {
         primary: '#FFC700',
