@@ -1,6 +1,6 @@
 ---
-import { Image } from 'astro:assets';
-import { twMerge } from 'tailwind-merge';
+import { LinkIcon } from '@heroicons/react/24/outline';
+import { twJoin } from 'tailwind-merge';
 import type { ClassProps } from '../interfaces/ClassProps';
 
 interface Props extends ClassProps {
@@ -12,16 +12,10 @@ const id = `${name.toLowerCase()}`;
 const href = `#${id}}`;
 ---
 
-<div class={twMerge('px-10', className)}>
-  <div class="flex text-white-30 text-body-sm font-medium">
+<div class={twJoin('px-10', className)}>
+  <div class="flex items-center gap-2 text-white-30 text-body-sm font-medium">
     <h2 id={id}>{name}</h2>
-    <a href={href}>
-      <Image
-        class="stroke-sky-400 fill-sky-400 text-sky-400"
-        src={import('/src/assets/icons/link.svg')}
-        alt="Link"
-      />
-    </a>
+    <a href={href}> <LinkIcon className="h-6 w-6" /></a>
   </div>
   <slot />
 </div>

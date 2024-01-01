@@ -1,0 +1,13 @@
+---
+import { twJoin } from 'tailwind-merge';
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div class={twJoin('text-white-70 [&>ul]:list-disc [&>ul]:ml-14', className)}>
+  <slot />
+</div>

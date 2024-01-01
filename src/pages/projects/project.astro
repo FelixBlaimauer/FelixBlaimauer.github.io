@@ -1,36 +1,36 @@
 ---
 import { Image } from 'astro:assets';
 
-import Navbar from '../../components/Navbar';
 import ProjectTitle from '../../components/ProjectTitle';
 import Layout from '../../layouts/Layout.astro';
 import Section from '../../components/Section.astro';
 import GradientBackground from '../../components/GradientBackground';
+import { getEntry } from 'astro:content';
 
 const title = 'QuetzalVPN';
 const description = 'OpenVPN made easy!';
+
+const quetzEntry = await getEntry('projects', 'quetzal-vpn');
 ---
 
-<Layout title="Project">
-  <Navbar />
-
+<Layout title={quetzEntry.data.title}>
   <div class="relative mt-28">
     <div id="wrapper">
       <GradientBackground />
       <ProjectTitle title={title} description={description} />
       <div class="flex justify-center items-center">
         <Image
-          src={import('/src/assets/projects/quetzal/iphone-left.png')}
+          src={import('/src/assets/projects/quetzal-vpn/iphone-left.png')}
           alt="Iphone mockup"
           class="ml-12 w-1/4"
         />
         <Image
-          src={import('/src/assets/projects/quetzal/macbook.png')}
+          src={import('/src/assets/projects/quetzal-vpn/macbook.png')}
           alt="Macbook mockup"
           class="w-1/2"
         />
         <Image
-          src={import('/src/assets/projects/quetzal/iphone-right.png')}
+          src={import('/src/assets/projects/quetzal-vpn/iphone-right.png')}
           alt="Iphone mockup"
           class="w-1/4 mr-12"
         />

@@ -1,10 +1,14 @@
 ---
 import { ViewTransitions, fade } from 'astro:transitions';
 import Footer from '../components/Footer';
+import Navbar from '../components/Navbar';
+import { getEntry } from 'astro:content';
 
 interface Props {
   title: string;
 }
+
+const personalInfo = await getEntry('personal', 'info');
 
 const { title } = Astro.props;
 ---
@@ -61,22 +65,25 @@ const { title } = Astro.props;
       }
 
       body {
-        background: #1d1d1d;
-        color: #ffffe6;
-        overflow-x: hidden;
+        @apply bg-background text-white-90 overflow-x-hidden;
         background: linear-gradient(78deg, red, yellow),
           linear-gradient(68, blue, green);
       }
 
-      em {
-        font-style: normal;
-        font-weight: 600;
+      strong {
+        @apply font-semibold;
         @apply text-white-90;
       }
     </style>
   </head>
   <body>
+    <Navbar />
     <slot />
-    <Footer class="mt-10" />
+    <Footer
+      name={personalInfo.data.name}
+      email={personalInfo.data.email}
+      phone={personalInfo.data.phone}
+      class="mt-10"
+    />
   </body>
 </html>

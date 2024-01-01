@@ -1,0 +1,50 @@
+---
+import { Image, Picture } from 'astro:assets';
+import CustomMarkdown from '../../components/CustomMarkdown.astro';
+import GradientBackground from '../../components/GradientBackground';
+import ProjectTitle from '../../components/ProjectTitle';
+import Section from '../../components/Section.astro';
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+export const getStaticPaths = async () => {
+  const projectEntries = await getCollection('projects');
+
+  return projectEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+};
+
+const { slug } = Astro.params;
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<Layout title={entry.data.title}>
+  <div class="relative mt-28">
+    <GradientBackground />
+    <ProjectTitle
+      title={entry.data.title}
+      description={entry.data.description}
+    />
+
+    <div class="mt-14 px-12 flex justify-center">
+      <Image
+        src={import(`/src/assets/projects/${slug}/splash-small.png`)}
+        class="lg:hidden"
+        alt=""
+      />
+      <Image
+        src={import(`/src/assets/projects/${slug}/splash-large.png`)}
+        class="hidden lg:block px-14"
+        alt=""
+      />
+    </div>
+
+    <Section class="mt-12 px-20" name="Details">
+      <h2 class="font-medium text-6xl">Details</h2>
+      <CustomMarkdown class="text-body-lg"><Content /></CustomMarkdown>
+    </Section>
+  </div>
+</Layout>
