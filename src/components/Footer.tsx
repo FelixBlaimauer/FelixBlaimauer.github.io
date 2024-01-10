@@ -1,4 +1,3 @@
-import 'solid-js';
 import { twJoin } from 'tailwind-merge';
 import type { ClassProps } from '../interfaces/ClassProps';
 
@@ -16,13 +15,13 @@ export default function Footer({
 }: FooterProps) {
   return (
     <footer
-      class={twJoin(
+      className={twJoin(
         'w-full px-12 py-8 border-t border-white-30 flex flex-wrap justify-center gap-x-80 gap-y-4',
         className
       )}
     >
       <div>
-        <p class="font-semibold text-4xl text-primary">Contact</p>
+        <p className="font-semibold text-4xl text-primary">Contact</p>
         <ul>
           <li>{name}</li>
           <li>{email}</li>
@@ -31,7 +30,7 @@ export default function Footer({
       </div>
 
       <div>
-        <p class="font-semibold text-4xl text-primary">Pages</p>
+        <p className="font-semibold text-4xl text-primary">Pages</p>
         <ul>
           <li>Home</li>
           <li>Projects</li>

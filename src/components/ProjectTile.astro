@@ -1,0 +1,37 @@
+---
+import { Image } from 'astro:assets';
+import { getEntry } from 'astro:content';
+import ProjectTitle from './ProjectTitle';
+import Tag from './Tag';
+interface Props {
+  slug: string;
+}
+
+const { slug } = Astro.props;
+
+const entry = await getEntry('projects', slug);
+---
+
+{
+  entry && (
+    <li class="border-y border-white-30 relative group">
+      <Image
+        src={import(`/src/assets/projects/${entry.slug}/banner.png`)}
+        alt={`${entry.data.title} banner`}
+        class="absolute inset-0 h-0 -z-10 my-auto group-hover:h-full transition-all"
+      />
+      <div class="flex items-center px-10 py-12">
+        <div class="w-fit">
+          <a href={`/projects/${entry.slug}`}>
+            <ProjectTitle small={true} {...entry.data} />
+          </a>
+          <div class="flex gap-2 items-center mt-2">
+            {entry.data.tags.map((tag) => (
+              <Tag tag={tag} />
+            ))}
+          </div>
+        </div>
+      </div>
+    </li>
+  )
+}

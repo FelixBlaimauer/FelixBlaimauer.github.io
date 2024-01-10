@@ -64,15 +64,48 @@ const { title } = Astro.props;
         background: #ffda5533;
       }
 
+      html {
+        scroll-behavior: smooth;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+      }
+
       body {
         @apply bg-background text-white-90 overflow-x-hidden;
         background: linear-gradient(78deg, red, yellow),
           linear-gradient(68, blue, green);
       }
 
-      strong {
+      .markdown strong {
         @apply font-semibold;
         @apply text-white-90;
+      }
+
+      .markdown a {
+        position: relative;
+      }
+
+      .markdown a:after {
+        content: '';
+        position: absolute;
+        width: min(max(10%, 10px), 100%);
+        marign: 0 auto;
+        left: 0;
+        bottom: -2%;
+        height: 3px;
+        @apply transition-all bg-current;
+      }
+
+      .markdown a:hover {
+        color: white;
+      }
+
+      .markdown a:hover:after {
+        @apply w-full;
       }
     </style>
   </head>

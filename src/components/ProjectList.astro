@@ -1,0 +1,13 @@
+---
+import type { ClassProps } from '../interfaces/ClassProps';
+import ProjectTile from './ProjectTile.astro';
+
+interface Props extends ClassProps {
+  projects: string[];
+}
+const { projects } = Astro.props;
+---
+
+<ul>
+  {projects.map((project) => <ProjectTile slug={project} />)}
+</ul>

@@ -23,7 +23,7 @@ const { Content } = await entry.render();
 
 <Layout title={entry.data.title}>
   <div class="relative mt-28">
-    <GradientBackground />
+    <GradientBackground color={entry.data.color} />
     <ProjectTitle
       title={entry.data.title}
       description={entry.data.description}
@@ -48,3 +48,9 @@ const { Content } = await entry.render();
     </Section>
   </div>
 </Layout>
+
+<style>
+  a {
+    color: red;
+  }
+</style>

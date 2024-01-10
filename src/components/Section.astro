@@ -5,15 +5,20 @@ import type { ClassProps } from '../interfaces/ClassProps';
 
 interface Props extends ClassProps {
   name: string;
+  padding?: boolean;
 }
 
-const { name, class: className } = Astro.props;
+const { name, padding, class: className } = Astro.props;
 const id = `${name.toLowerCase()}`;
 const href = `#${id}}`;
 ---
 
-<div class={twJoin('px-10', className)}>
-  <div class="flex items-center gap-2 text-white-30 text-body-sm font-medium">
+<div class={twJoin(padding === false ? '' : 'px-10', className)}>
+  <div
+    class={`flex items-center gap-2 text-white-30 text-body-sm font-medium ${
+      padding === false ? 'px-10' : ''
+    }`}
+  >
     <h2 id={id}>{name}</h2>
     <a href={href}> <LinkIcon className="h-6 w-6" /></a>
   </div>

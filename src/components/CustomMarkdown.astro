@@ -8,6 +8,11 @@ interface Props {
 const { class: className } = Astro.props;
 ---
 
-<div class={twJoin('text-white-70 [&>ul]:list-disc [&>ul]:ml-14', className)}>
+<div
+  class={twJoin(
+    'markdown text-white-70 [&>ul]:list-disc [&>ul]:ml-14',
+    className
+  )}
+>
   <slot />
 </div>
