@@ -1,20 +1,24 @@
 ---
-import { Image, Picture } from 'astro:assets';
-import CustomMarkdown from '../../components/CustomMarkdown.astro';
-import GradientBackground from '../../components/GradientBackground';
-import ProjectTitle from '../../components/ProjectTitle';
-import Section from '../../components/Section.astro';
-import Layout from '../../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
+import { Image, Picture } from "astro:assets";
+import CustomMarkdown from "../../components/CustomMarkdown.astro";
+import GradientBackground from "../../components/solid/GradientBackground";
+import ProjectTitle from "../../components/solid/ProjectTitle";
+import Section from "../../components/Section.astro";
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
 
-export const getStaticPaths = async () => {
-  const projectEntries = await getCollection('projects');
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
 
-  return projectEntries.map((entry) => ({
-    params: { slug: entry.slug },
-    props: { entry },
-  }));
-};
+  const paths = projects.map((entry) => {
+    return {
+      params: { slug: entry.slug },
+      props: { entry },
+    };
+  });
+
+  return paths;
+}
 
 const { slug } = Astro.params;
 const { entry } = Astro.props;
@@ -27,9 +31,10 @@ const { Content } = await entry.render();
     <ProjectTitle
       title={entry.data.title}
       description={entry.data.description}
+      h1={true}
     />
 
-    <div class="mt-14 px-12 flex justify-center">
+    <div class="mt-14 mb-12 px-12 flex justify-center">
       <Image
         src={import(`/src/assets/projects/${slug}/splash-small.png`)}
         class="lg:hidden"
@@ -42,10 +47,12 @@ const { Content } = await entry.render();
       />
     </div>
 
-    <Section class="mt-12 px-20" name="Details">
-      <h2 class="font-medium text-6xl">Details</h2>
-      <CustomMarkdown class="text-body-lg"><Content /></CustomMarkdown>
-    </Section>
+    <!-- <Section class="mt-12 px-20" name="Details"> -->
+    <!-- <h2 class="font-medium text-6xl">Details</h2> -->
+    <!-- <CustomMarkdown class="text-body-lg"> -->
+    <Content />
+    <!-- </CustomMarkdown> -->
+    <!-- </Section> -->
   </div>
 </Layout>
 

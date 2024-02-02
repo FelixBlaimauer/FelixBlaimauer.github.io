@@ -1,8 +1,8 @@
 ---
 import { Image } from 'astro:assets';
 import { getEntry } from 'astro:content';
-import ProjectTitle from './ProjectTitle';
-import Tag from './Tag';
+import ProjectTitle from './solid/ProjectTitle';
+import Tag from './solid/Tag';
 interface Props {
   slug: string;
 }
@@ -15,13 +15,20 @@ const entry = await getEntry('projects', slug);
 {
   entry && (
     <li class="border-y border-white-30 relative group">
-      <Image
-        src={import(`/src/assets/projects/${entry.slug}/banner.png`)}
-        alt={`${entry.data.title} banner`}
-        class="absolute inset-0 h-0 -z-10 my-auto group-hover:h-full transition-all"
-      />
-      <div class="flex items-center px-10 py-12">
-        <div class="w-fit">
+      <!--   <Image
+         src={import(`/src/assets/projects/${entry.slug}/banner.png`)}
+         alt={`${entry.data.title} banner`}
+         class="absolute inset-0 h-0 -z-10 my-auto group-hover:h-full transition-all"
+       /> -->
+       <div class="absolute font-bold overflow-hidden text-white-30 select-none inset-0 h-full bg-white/30 -z-10 my-auto group-hover:h-full transition-all">
+          <div class="absolute inset-0 bg-gradient-to-r from-25% from-background to-background/60 z-10"></div>
+          <div class="-z-10 flex flex-col justify-evenly h-full text-[80pt] leading-tighter">
+            <p class="scrolltext">{entry.data.title.toUpperCase().repeat(10)}</p>
+            <p class="rotate-180 scrolltext-flip">{entry.data.title.toUpperCase().repeat(10)}</p>
+          </div>
+        </div>
+      <div class="flex items-center px-10">
+        <div class="w-fit py-16">
           <a href={`/projects/${entry.slug}`}>
             <ProjectTitle small={true} {...entry.data} />
           </a>
@@ -31,6 +38,18 @@ const entry = await getEntry('projects', slug);
             ))}
           </div>
         </div>
+        <div class="flex justify-center gap-4 grow">
+          <Image
+              src={import(`/src/assets/projects/${entry.slug}/splash-small.png`)}
+              alt={`${entry.data.title} banner`}
+              class="h-56 w-auto"
+             />
+             <Image
+              src={import(`/src/assets/projects/${entry.slug}/banner-1.png`)}
+              alt={`${entry.data.title} banner`}
+              class="h-56 w-auto"
+             />
+          </div>
       </div>
     </li>
   )

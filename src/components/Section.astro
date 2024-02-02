@@ -1,26 +1,38 @@
 ---
-import { LinkIcon } from '@heroicons/react/24/outline';
-import { twJoin } from 'tailwind-merge';
-import type { ClassProps } from '../interfaces/ClassProps';
+import { LinkIcon } from "@heroicons/react/24/outline";
+import { twJoin } from "tailwind-merge";
+import type { ClassProps } from "../interfaces/ClassProps";
 
 interface Props extends ClassProps {
   name: string;
   padding?: boolean;
+  markdown?: {
+    list?: boolean;
+  };
 }
 
-const { name, padding, class: className } = Astro.props;
+const { name, padding, class: className, markdown } = Astro.props;
 const id = `${name.toLowerCase()}`;
-const href = `#${id}}`;
+const href = `#${id}`;
 ---
 
-<div class={twJoin(padding === false ? '' : 'px-10', className)}>
+<div class:list={[{ "px-3 sm:px-10": padding ?? true }, className]}>
   <div
     class={`flex items-center gap-2 text-white-30 text-body-sm font-medium ${
-      padding === false ? 'px-10' : ''
+      padding === false ? "px-3 sm:px-10" : ""
     }`}
   >
-    <h2 id={id}>{name}</h2>
+    <h2 class="text-2xl" id={id}>{name}</h2>
     <a href={href}> <LinkIcon className="h-6 w-6" /></a>
   </div>
-  <slot />
+  <div
+    class:list={[
+      {
+        "markdown text-white-70": markdown,
+        "[&>ul]:ml-14 [&>ul]:list-disc": markdown?.list,
+      },
+    ]}
+  >
+    <slot />
+  </div>
 </div>

@@ -1,11 +1,21 @@
-import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
-import solidJs from '@astrojs/solid-js';
+import { defineConfig } from "astro/config";
+import tailwind from "@astrojs/tailwind";
+import solidJs from "@astrojs/solid-js";
+import react from "@astrojs/react";
 
-import react from '@astrojs/react';
+import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://felix-blaimauer.me',
-  integrations: [tailwind(), solidJs(), react()],
+  site: "https://felix-blaimauer.me",
+  integrations: [
+    tailwind(),
+    solidJs({
+      include: ["**/solid/**"],
+    }),
+    react({
+      include: ["**/react/**"],
+    }),
+    mdx(),
+  ],
 });
