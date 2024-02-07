@@ -1,7 +1,8 @@
 ---
-import { LinkIcon } from "@heroicons/react/24/outline";
-import { twJoin } from "tailwind-merge";
-import type { ClassProps } from "../interfaces/ClassProps";
+import { twJoin } from 'tailwind-merge';
+import type { ClassProps } from '../interfaces/ClassProps';
+import { Icon } from 'astro-icon/components';
+// import Icon from 'astro-icon';
 
 interface Props extends ClassProps {
   name: string;
@@ -16,23 +17,25 @@ const id = `${name.toLowerCase()}`;
 const href = `#${id}`;
 ---
 
-<div class:list={[{ "px-3 sm:px-10": padding ?? true }, className]}>
+<section class:list={[{ 'px-3 sm:px-10': padding ?? true }, className]}>
   <div
     class={`flex items-center gap-2 text-white-30 text-body-sm font-medium ${
-      padding === false ? "px-3 sm:px-10" : ""
+      padding === false ? 'px-3 sm:px-10' : ''
     }`}
   >
     <h2 class="text-2xl" id={id}>{name}</h2>
-    <a href={href}> <LinkIcon className="h-6 w-6" /></a>
+    <a href={href}>
+      <Icon class="aspect-square w-6" name="heroicons:link-solid" />
+    </a>
   </div>
   <div
     class:list={[
       {
-        "markdown text-white-70": markdown,
-        "[&>ul]:ml-14 [&>ul]:list-disc": markdown?.list,
+        'markdown text-white-70': markdown,
+        '[&>ul]:ml-14 [&>ul]:list-disc': markdown?.list,
       },
     ]}
   >
     <slot />
   </div>
-</div>
+</section>

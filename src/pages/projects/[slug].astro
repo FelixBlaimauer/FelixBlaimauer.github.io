@@ -1,14 +1,14 @@
 ---
-import { Image, Picture } from "astro:assets";
-import CustomMarkdown from "../../components/CustomMarkdown.astro";
-import GradientBackground from "../../components/solid/GradientBackground";
-import ProjectTitle from "../../components/solid/ProjectTitle";
-import Section from "../../components/Section.astro";
-import Layout from "../../layouts/Layout.astro";
-import { getCollection } from "astro:content";
+import { Image, Picture } from 'astro:assets';
+import CustomMarkdown from '../../components/CustomMarkdown.astro';
+import GradientBackground from '../../components/solid/GradientBackground';
+import ProjectTitle from '../../components/solid/ProjectTitle';
+import Section from '../../components/Section.astro';
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
-  const projects = await getCollection("projects");
+  const projects = await getCollection('projects');
 
   const paths = projects.map((entry) => {
     return {
@@ -34,14 +34,18 @@ const { Content } = await entry.render();
       h1={true}
     />
 
-    <div class="mt-14 mb-12 px-12 flex justify-center">
+    <div class="mt-8 sm:t-14 mb-12 px-12 flex justify-center">
       <Image
-        src={import(`/src/assets/projects/${slug}/splash-small.png`)}
+        src={import(
+          `/src/assets/projects/${slug}/splash-small.png` /* @vite-ignore */
+        )}
         class="lg:hidden"
         alt=""
       />
       <Image
-        src={import(`/src/assets/projects/${slug}/splash-large.png`)}
+        src={import(
+          `/src/assets/projects/${slug}/splash-large.png` /* @vite-ignore */
+        )}
         class="hidden lg:block px-14"
         alt=""
       />

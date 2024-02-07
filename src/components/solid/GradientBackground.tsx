@@ -1,5 +1,5 @@
-import { twJoin } from "tailwind-merge";
-import type { ClassProps } from "../../interfaces/ClassProps";
+import { twJoin } from 'tailwind-merge';
+import type { ClassProps } from '../../interfaces/ClassProps';
 
 interface GradientBackgroundProps extends ClassProps {
   color: string;
@@ -11,7 +11,7 @@ function hexToHsv(hex: string): { h: number; s: number; v: number } | null {
   const match = hex.match(hexRegex);
 
   if (!match) {
-    console.error("Invalid hex color format");
+    console.error('Invalid hex color format');
     return null;
   }
 
@@ -102,7 +102,10 @@ export default function ({ class: className, color }: GradientBackgroundProps) {
     outer && (
       <div
         id="gradient-background"
-        class={twJoin("absolute -top-2 -z-10 h-[42rem] w-full", className)}
+        class={twJoin(
+          'absolute -top-2 -z-10 h-[65vh] w-full opacity-70 sm:h-[42rem] sm:opacity-100',
+          className,
+        )}
         style={{
           background: `radial-gradient(50% 50% at 50% 50%, ${hsvToRgba(
             inner,

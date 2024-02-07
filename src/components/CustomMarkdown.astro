@@ -11,7 +11,8 @@ const { class: className, list = true } = Astro.props;
 
 <div
   class={twJoin(
-    `markdown text-white-70 ${list ? "[&>ul]:ml-14 [&>ul]:list-disc" : ""}`,
+    "markdown text-white-70",
+    list && "[&>ul]:ml-14 [&>ul]:list-disc",
     className,
   )}
 >

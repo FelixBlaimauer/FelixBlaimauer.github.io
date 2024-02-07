@@ -12,7 +12,7 @@ import Section from '../../components/Section.astro';
 import H2 from '../../components/markdown/h2.astro';
 
 export const components = {
-  h2: H2
+  h2: H2,
 }
 
 <Section class="text-body-lg" markdown={{list: true}} name="Description">
@@ -27,9 +27,9 @@ export const components = {
   For a closer look, check out the <a href="https://quetzal-vpn.dev" target='_blank'>project website</a>.
 </Section>
 
-![Quetzal Mockup](../../assets/projects/quetzal-vpn/banner-1.png)
+{/* ![Quetzal Mockup](../../assets/projects/quetzal-vpn/banner-1.png) */}
 
-<Section class="text-xl mt-12" markdown={{list: true}} name="More Details">
+<Section class="text-body-lg mt-12" markdown={{list: true}} name="More Details">
   I developed **QuetzalVPN** in a team of 4 as a school project at <a href="https://www.sz-ybbs.ac.at" target="_blank">IT-HTL Ybbs</a>.
   My main focus was the **frontend** and **UI / UX** design.
 
@@ -38,5 +38,5 @@ export const components = {
   <a href="https://github.com/RaZoD1" target="_blank">Raphael</a> was my main **collaborator**. He wrote the backend in **Kotlin**
   using the **Ktor** framework while also being reponsible for server configuration and communication.
 
-  I did my design in **Figma** and implemented it in **React** and **TailwindCSS** for the styling.
+  I did my design in **Figma** and implemented it with **React** and **TailwindCSS** for the styling.
 </Section>

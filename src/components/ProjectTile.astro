@@ -1,8 +1,9 @@
 ---
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import { getEntry } from 'astro:content';
 import ProjectTitle from './solid/ProjectTitle';
 import Tag from './solid/Tag';
+
 interface Props {
   slug: string;
 }
@@ -10,27 +11,33 @@ interface Props {
 const { slug } = Astro.props;
 
 const entry = await getEntry('projects', slug);
+
+const banner = await getImage({
+  src: import(`/src/assets/projects/${slug}/banner.png`),
+});
 ---
 
 {
   entry && (
-    <li class="border-y border-white-30 relative group">
-      <!--   <Image
-         src={import(`/src/assets/projects/${entry.slug}/banner.png`)}
-         alt={`${entry.data.title} banner`}
-         class="absolute inset-0 h-0 -z-10 my-auto group-hover:h-full transition-all"
-       /> -->
-       <div class="absolute font-bold overflow-hidden text-white-30 select-none inset-0 h-full bg-white/30 -z-10 my-auto group-hover:h-full transition-all">
-          <div class="absolute inset-0 bg-gradient-to-r from-25% from-background to-background/60 z-10"></div>
-          <div class="-z-10 flex flex-col justify-evenly h-full text-[80pt] leading-tighter">
-            <p class="scrolltext">{entry.data.title.toUpperCase().repeat(10)}</p>
-            <p class="rotate-180 scrolltext-flip">{entry.data.title.toUpperCase().repeat(10)}</p>
-          </div>
+    <li class="border-y border-white-30 relative group text-white-90-opaque">
+      <div class="absolute font-bold text-white-30 select-none inset-0 bg-white/30 -z-10 my-auto">
+        <div class="absolute inset-0 bg-gradient-to-r from-25% from-background to-background/60 z-10" />
+        <div class="-z-10 flex flex-col justify-evenly h-full text-[80pt] leading-tighter group-hover:opacity-0 transition-opacity">
+          <p class="scrolltext">{entry.data.title.toUpperCase().repeat(10)}</p>
+          <p class="rotate-180 scrolltext-flip">
+            {entry.data.title.toUpperCase().repeat(10)}
+          </p>
         </div>
-      <div class="flex items-center px-10">
-        <div class="w-fit py-16">
+      </div>
+      <div
+        style={{ backgroundImage: `url(${banner.src})` }}
+        class="absolute inset-0 -z-10 my-auto h-0 group-hover:h-full transition-all bg-cover bg-no-repeat bg-center duration-200 hover:duration-300"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r -z-10 from-background/60 to-background/0 from-10% to-60% sm:to-40% group-hover:opacity-100 opacity-0 transition-opacity" />
+      <div class="flex items-center px-3 sm:px-6 md:px-12">
+        <div class="w-fit p-4 group-hover:bg-gradient-to-t rounded-3xl from-background/50 to-slate-900/0 to-70% my-8 sm:my-12 transition-all">
           <a href={`/projects/${entry.slug}`}>
-            <ProjectTitle small={true} {...entry.data} />
+            <ProjectTitle class="text-current" small={true} {...entry.data} />
           </a>
           <div class="flex gap-2 items-center mt-2">
             {entry.data.tags.map((tag) => (
@@ -40,17 +47,44 @@ const entry = await getEntry('projects', slug);
         </div>
         <div class="flex justify-center gap-4 grow">
           <Image
-              src={import(`/src/assets/projects/${entry.slug}/splash-small.png`)}
-              alt={`${entry.data.title} banner`}
-              class="h-56 w-auto"
-             />
-             <Image
-              src={import(`/src/assets/projects/${entry.slug}/banner-1.png`)}
-              alt={`${entry.data.title} banner`}
-              class="h-56 w-auto"
-             />
-          </div>
+            src={
+              import(
+                `/src/assets/projects/${entry.slug}/splash-small.png` /* @vite-ignore */
+              )
+            }
+            alt={`${entry.data.title} banner`}
+            class="h-56 w-auto hidden sm:block"
+          />
+          <Image
+            src={
+              import(
+                `/src/assets/projects/${entry.slug}/banner-1.png` /* @vite-ignore */
+              )
+            }
+            alt={`${entry.data.title} banner 1`}
+            class="h-56 w-auto hidden lg:block"
+          />
+        </div>
       </div>
     </li>
   )
 }
+
+<script>
+  import { animate, scroll } from 'motion';
+
+  const scrollRate = 22;
+
+  scroll(
+    animate('.scrolltext', {
+      translate: [`${scrollRate}%`, `-${scrollRate}%`],
+    }),
+  );
+
+  scroll(
+    animate('.scrolltext-flip', {
+      rotate: [180, 180],
+      translate: [`-${scrollRate}%`, `${scrollRate}%`],
+    }),
+  );
+</script>

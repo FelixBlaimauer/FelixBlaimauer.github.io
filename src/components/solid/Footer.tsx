@@ -1,5 +1,5 @@
-import { twJoin } from "tailwind-merge";
-import type { ClassProps } from "../../interfaces/ClassProps";
+import { twJoin } from 'tailwind-merge';
+import type { ClassProps } from '../../interfaces/ClassProps';
 
 interface FooterProps extends ClassProps {
   name: string;
@@ -16,12 +16,12 @@ export default function Footer({
   return (
     <footer
       class={twJoin(
-        "flex w-full flex-wrap justify-center gap-x-80 gap-y-4 border-t border-white-30 px-12 py-8",
+        'flex w-full flex-wrap gap-x-20 gap-y-4 border-t border-white-30 px-12 py-8 text-white-90 sm:justify-center md:gap-x-80',
         className,
       )}
     >
       <div>
-        <p class="text-4xl font-semibold text-primary">Contact</p>
+        <h4 class="text-4xl font-semibold text-primary">Contact</h4>
         <ul>
           <li>{name}</li>
           <li>{email}</li>
@@ -30,7 +30,7 @@ export default function Footer({
       </div>
 
       <div>
-        <p class="text-4xl font-semibold text-primary">Pages</p>
+        <h4 class="text-4xl font-semibold text-primary">Pages</h4>
         <ul>
           <li>
             <a href="/">Home</a>
