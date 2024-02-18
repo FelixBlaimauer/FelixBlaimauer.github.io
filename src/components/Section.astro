@@ -2,7 +2,6 @@
 import { twJoin } from 'tailwind-merge';
 import type { ClassProps } from '../interfaces/ClassProps';
 import { Icon } from 'astro-icon/components';
-// import Icon from 'astro-icon';
 
 interface Props extends ClassProps {
   name: string;
@@ -22,8 +21,9 @@ const href = `#${id}`;
     class={`flex items-center gap-2 text-white-30 text-body-sm font-medium ${
       padding === false ? 'px-3 sm:px-10' : ''
     }`}
+    id={id}
   >
-    <h2 class="text-2xl" id={id}>{name}</h2>
+    <h2 class="text-2xl">{name}</h2>
     <a href={href}>
       <Icon class="aspect-square w-6" name="heroicons:link-solid" />
     </a>

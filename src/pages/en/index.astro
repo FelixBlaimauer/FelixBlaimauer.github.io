@@ -1,0 +1,131 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Section from '../../components/Section.astro';
+import { Image } from 'astro:assets';
+import { getCollection, getEntry } from 'astro:content';
+import CustomMarkdown from '../../components/CustomMarkdown.astro';
+import ProjectList from '../../components/ProjectList.astro';
+
+const { Content: About } = await (await getEntry('home', 'en/about')).render();
+const { Content: Contact } = await (
+  await getEntry('home', 'en/contact')
+).render();
+
+const projects = (await getCollection('projects')).filter((it) =>
+  it.slug.startsWith(`${Astro.currentLocale}/`),
+);
+
+const gradientLeft =
+  'linear-gradient(96deg, rgba(92, 92, 92, 0.43) -15%, rgba(0, 0, 0, 0.00) 50%)';
+const gradientRight =
+  'linear-gradient(-87deg, rgba(92, 92, 92, 0.30) -25%, rgba(92, 92, 92, 0.00) 55%)';
+
+const indicatorGradient =
+  'radial-gradient(circle, rgba(255,199,0,0.25) 0%, rgba(255,199,0, 0.1) 20% ,rgba(255,199,0,0) 40%);';
+---
+
+<Layout title="Home">
+  <div
+    id="splash-screen"
+    class="sm:relative sm:mt-20 h-fit sm:h-[calc(100vh-5rem)]"
+  >
+    <div
+      class="absolute hidden sm:block scale-125 -translate-y-20 inset-0 -z-50"
+      style={{ background: `${gradientLeft}, ${gradientRight}` }}
+    >
+    </div>
+    <!-- <div
+      id="cursor-indicator"
+      style={{ background: indicatorGradient }}
+      class="absolute -z-20 h-52 w-52 scale-150 rounded-full -translate-x-1/2 -translate-y-1/2 duration-300 transition bg-contain"
+    > -->
+    <!-- </div> -->
+    <div
+      class="relative sm:absolute sm:right-8 mt-16 sm:top-24 w-full sm:w-5/12 h-96 mx-auto sm:m-0 max-w-sm sm:max-w-2xl"
+    >
+      <Image
+        src={import('/src/assets/star_illustration.svg' /* @vite-ignore */)}
+        alt="Illustration"
+        class="absolute mt-[12%] ml-[2%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-[24deg] scale-[1.35] w-1/2"
+      />
+      <Image
+        src={import('/src/assets/portrait.png')}
+        alt="Portrait"
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 saturate-[1.1] w-5/6 scale-95"
+      />
+    </div>
+
+    <div
+      class="sm:absolute sm:bottom-8 rounded-3xl sm:left-10 sm:p-8 bg-gradient-to-tr from-background/60 to-background/0 to-50% px-3 flex flex-col text-5xl sm:text-display-xl font-semibold text-white-30 leading-tighter mt-16 sm:mt-60"
+    >
+      <span class="text-primary">Felix Blaimauer</span>
+      <span class="hover:text-white-70 transition duration-75"
+        >Web Dev & Design</span
+      >
+      <span class="hover:text-white-70 transition duration-75"
+        >Photo / Video</span
+      >
+      <span class="hover:text-white-70 transition duration-75"
+        >3D Visual FX</span
+      >
+    </div>
+  </div>
+
+  <Section class="mt-8" name="About">
+    <CustomMarkdown
+      class="text-2xl sm:text-body-lg leading-tight [&>h2]:font-semibold [&>h2]:text-6xl sm:[&>h2]:text-display-xl [&>h2]:text-primary"
+    >
+      <About />
+    </CustomMarkdown>
+  </Section>
+
+  <Section class="mt-10" padding={false} name="Projects">
+    <h2
+      class="text-6xl sm:text-display-xl text-primary font-semibold leading-tighter px-3 sm:px-10"
+    >
+      Check out some of my projects
+    </h2>
+    <div class="mt-8">
+      <ProjectList projects={projects.map((it) => it.slug)} />
+    </div>
+  </Section>
+
+  <Section class="mt-10" name="Contact">
+    <CustomMarkdown
+      list={false}
+      class="text-2xl sm:text-body-lg leading-tight [&>h2]:font-semibold [&>h2]:text-6xl sm:[&>h2]:text-display-xl [&>h2]:text-primary"
+    >
+      <Contact />
+    </CustomMarkdown>
+  </Section>
+
+  <!-- <script>
+  const splashScreen = document.getElementById('splash-screen');
+  const cursorIndicator = document.getElementById('cursor-indicator');
+
+  if (splashScreen && cursorIndicator) {
+    splashScreen.addEventListener('mouseover', (e) => {
+      cursorIndicator.style.opacity = '1';
+    });
+
+    splashScreen.addEventListener('mouseout', () => {
+      cursorIndicator.style.opacity = '0';
+    });
+
+    splashScreen.addEventListener('mousemove', (e) => {
+      const child = e.target.getBoundingClientRect();
+      cursorIndicator.animate(
+        {
+          top: e.offsetY + child.top + 'px',
+          left: e.offsetX + child.left + 'px',
+        },
+        {
+          duration: 100,
+          fill: 'forwards',
+          easing: 'ease',
+        },
+      );
+    });
+  }
+</script> -->
+</Layout>

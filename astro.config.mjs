@@ -8,6 +8,13 @@ import icon from 'astro-icon';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://felix-blaimauer.me',
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'de'],
+    routing: {
+      prefixDefaultLocale: true,
+    },
+  },
   integrations: [
     tailwind(),
     solidJs({
@@ -16,7 +23,7 @@ export default defineConfig({
     mdx(),
     icon({
       include: {
-        'heroicons': ['*'],
+        heroicons: ['*'],
       },
     }),
   ],

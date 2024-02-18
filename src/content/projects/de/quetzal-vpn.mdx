@@ -1,0 +1,43 @@
+---
+title: 'QuetzalVPN'
+tags:
+  - 'Frontend Dev'
+  - 'UI / UX'
+
+description: 'OpenVPN einfach gemacht!'
+color: '#00ff70'
+---
+
+import Section from '../../../components/Section.astro';
+import H2 from '../../../components/markdown/h2.astro';
+
+export const components = {
+  h2: H2,
+}
+
+<Section class="text-body-lg" markdown={{list: true}} name="Beschreibung">
+  ## Beschreibung
+
+  **QuetalVPN** ist eine Open Source **Web Oberfläche** für deinen **OpenVPN** server.
+  Zu den **Featuers** zählne:
+
+  - Benutzer Management **👤**  
+  - Server Konfiguration **⚙️**
+  - Ein Dashobard **📊**
+
+  Willst du noch mehr erfahren? Dann lese auf der <a href="https://quetzal-vpn.dev" target='_blank'>Projekt Website</a> nach.
+</Section>
+
+{/* ![Quetzal Mockup](../../assets/projects/quetzal-vpn/banner-1.png) */}
+
+<Section class="text-body-lg mt-12" markdown={{list: true}} name="Details">
+  **QuetzalVPN** wurde mit einem 4-köpfigem Team der <a href="https://www.sz-ybbs.ac.at" target="_blank">IT-HTL Ybbs</a> umgesetzt.
+  Mein Aufgabengebit lag in dem **UI / UX Design** und der Umsetzung des **Frontends**.
+
+  Der Quellcode ist öffentlich auf <a href="https://github.com/QuetzalVPN/quetzal-vpn" target="_blank">GitHub</a> verfügbar.
+  
+  <a href="https://github.com/RaZoD1" target="_blank">Raphael</a> war mein wichtigster **Partner** bei diesem Projekt.
+  Er war für das Backend, welches er in **Kotlin** programmierte, zuständig. Die Zusammenarbeit machte mir große Freude!
+
+  Das Design wurde in **Figma** erstellt und anschließend mit **React** und **TailwindCSS** für das Web gebaut.
+</Section>

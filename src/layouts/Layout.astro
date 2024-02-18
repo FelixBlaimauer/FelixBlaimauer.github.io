@@ -6,16 +6,41 @@ import { getEntry } from 'astro:content';
 
 interface Props {
   title: string;
+  blank?: boolean;
 }
 
 const personalInfo = await getEntry('personal', 'info');
 
-const { title } = Astro.props;
+const isProd = import.meta.env.DEV;
+const gTag = 'G-XM0GT0NKN5';
+
+const { title, blank = false } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en" transition:animate="fade">
+<html lang={Astro.currentLocale ?? 'en'} transition:animate="fade">
   <head>
+    {
+      isProd &&
+      <script
+        async
+        src={`https://www.googletagmanager.com/gtag/js?id=${gTag}`}
+      ></script>
+      <script>
+        // @ts-ignore
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          // @ts-ignore
+          dataLayer.push(arguments);
+        }
+        // @ts-ignore
+        gtag('js', new Date());
+
+        // @ts-ignore
+        gtag('config', gTag);
+      </script>
+    </>
+    }
     <meta charset="utf-8" />
     <meta
       name="description"
@@ -63,6 +88,13 @@ const { title } = Astro.props;
       ::selection {
         background: #ffda5533;
       }
+
+      /* :target::before {
+        content: '';
+        display: block;
+        height: 200px;
+        margin-top: -200px;
+      } */
 
       html {
         scroll-behavior: smooth;
@@ -114,7 +146,7 @@ const { title } = Astro.props;
     </style>
   </head>
   <body>
-    <Navbar />
+    {!blank && <Navbar locale={Astro.currentLocale} />}
     <slot />
     <Footer
       name={personalInfo.data.name}

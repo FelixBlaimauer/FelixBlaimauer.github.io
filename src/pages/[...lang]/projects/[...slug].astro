@@ -1,0 +1,67 @@
+---
+import { Image } from 'astro:assets';
+import GradientBackground from '../../../components/solid/GradientBackground';
+import ProjectTitle from '../../../components/solid/ProjectTitle';
+import Layout from '../../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+
+  const paths = projects.map((entry) => {
+    const [lang, ...slug] = entry.slug.split('/');
+
+    return {
+      params: { lang: lang ?? 'en', slug: slug.join('/') },
+      props: entry,
+    };
+  });
+
+  return paths;
+}
+
+const { slug } = Astro.params;
+const entry = Astro.props;
+const { Content } = await entry.render();
+---
+
+<Layout title={entry.data.title}>
+  <div class="relative mt-28">
+    <GradientBackground color={entry.data.color} />
+    <ProjectTitle
+      title={entry.data.title}
+      description={entry.data.description}
+      h1={true}
+    />
+
+    <div class="mt-8 sm:t-14 mb-12 px-12 flex justify-center">
+      <Image
+        src={import(
+          `/src/assets/projects/${slug}/splash-small.png` /* @vite-ignore */
+        )}
+        class="lg:hidden"
+        alt=""
+      />
+      <Image
+        src={import(
+          `/src/assets/projects/${slug}/splash-large.png` /* @vite-ignore */
+        )}
+        class="hidden lg:block px-14"
+        alt=""
+      />
+    </div>
+
+    <!-- <Section class="mt-12 px-20" name="Details"> -->
+    <!-- <h2 class="font-medium text-6xl">Details</h2> -->
+    <!-- <CustomMarkdown class="text-body-lg"> -->
+    <Content />
+    <!-- </CustomMarkdown> -->
+    <!-- </Section> -->
+  </div>
+</Layout>
+
+<style>
+  a {
+    color: red;
+  }
+</style>
