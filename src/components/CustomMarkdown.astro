@@ -1,5 +1,5 @@
 ---
-import { twJoin } from "tailwind-merge";
+import { twJoin } from 'tailwind-merge';
 
 interface Props {
   class?: string;
@@ -10,11 +10,7 @@ const { class: className, list = true } = Astro.props;
 ---
 
 <div
-  class={twJoin(
-    "markdown text-white-70",
-    list && "[&>ul]:ml-14 [&>ul]:list-disc",
-    className,
-  )}
+  class={twJoin('markdown', list && '[&>ul]:ml-14 [&>ul]:list-disc', className)}
 >
   <slot />
 </div>

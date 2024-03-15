@@ -10,12 +10,12 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.4.1",
-    "@astrojs/mdx": "^2.1.0",
+    "@astrojs/check": "^0.5.6",
+    "@astrojs/mdx": "^2.1.1",
     "@astrojs/solid-js": "^4.0.1",
     "@astrojs/tailwind": "^5.1.0",
     "@iconify-json/heroicons": "^1.1.19",
-    "astro": "^4.2.6",
+    "astro": "^4.4.15",
     "astro-icon": "^1.1.0",
     "motion": "^10.17.0",
     "sass": "^1.69.7",
@@ -25,6 +25,7 @@
     "typescript": "^5.3.2"
   },
   "devDependencies": {
+    "@rollup/plugin-dynamic-import-vars": "^2.1.2",
     "prettier": "^3.2.4",
     "prettier-plugin-astro": "^0.13.0",
     "prettier-plugin-tailwindcss": "^0.5.11"

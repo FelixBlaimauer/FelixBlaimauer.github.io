@@ -1,7 +1,27 @@
 ---
+import { twMerge } from 'tailwind-merge';
+import type { ClassProps } from '../../interfaces/ClassProps';
 
+interface Props extends ClassProps {}
+
+const { class: className } = Astro.props;
 ---
 
-<h2 class="text-white-90 font-medium text-5xl sm:text-6xl mb-4">
-  <slot />
-</h2>
+<div class="relative w-fit">
+  <h2 class={twMerge('font-medium text-5xl sm:text-6xl mb-4', className)}>
+    <slot />
+  </h2>
+
+  <div
+    class="reveal-thing absolute opacity-75 left-0 h-1/2 rounded-full w-24 top-1/2 transition-all -translate-y-1/2 bg-gradient-to-r from-primary to-accent to-[200%] shadow-md"
+  >
+  </div>
+  <div
+    class="reveal-thing absolute left-28 h-1/2 opacity-75 rounded-full w-12 top-1/2 transition-all -translate-y-1/2 bg-gradient-to-r from-primary to-accent from-[-150%] to-[120%] shadow-md"
+  >
+  </div>
+  <div
+    class="reveal-thing absolute shadow-md left-44 h-1/2 rounded-full opacity-75 aspect-square top-1/2 transition-all -translate-y-1/2 bg-gradient-to-r from-primary from-[-400%] to-accent to-[100%]"
+  >
+  </div>
+</div>

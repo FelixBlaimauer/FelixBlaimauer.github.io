@@ -1,6 +1,7 @@
 import { For } from 'solid-js';
 import type { ClassProps } from '../../interfaces/ClassProps';
 import { twJoin } from 'tailwind-merge';
+import NavLink from './NavLink';
 
 interface NavbarProps extends ClassProps {
   compact?: boolean;
@@ -28,7 +29,7 @@ export default function Navbar({
   return (
     <nav
       class={twJoin(
-        'fixed left-0 top-0 z-10 flex w-full items-center justify-between border-b border-white-30 px-4 py-3 backdrop-blur-sm sm:px-8',
+        'cursor-custom fixed left-0 top-0 z-30 flex h-20 w-full items-center justify-between border-b border-white-30 px-4 backdrop-blur-sm sm:px-8',
         className,
       )}
     >
@@ -46,9 +47,9 @@ export default function Navbar({
             {(route) => (
               <a
                 href={route.path}
-                class="hidden text-xl font-medium text-white-90 sm:inline"
+                class="hidden text-xl font-medium text-white-90-opaque sm:inline"
               >
-                {route.name}
+                <NavLink text={route.name} />
               </a>
             )}
           </For>

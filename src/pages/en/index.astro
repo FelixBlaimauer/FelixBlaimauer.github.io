@@ -5,6 +5,9 @@ import { Image } from 'astro:assets';
 import { getCollection, getEntry } from 'astro:content';
 import CustomMarkdown from '../../components/CustomMarkdown.astro';
 import ProjectList from '../../components/ProjectList.astro';
+import ScrollIndicator from '../../components/solid/ScrollIndicator';
+import NavLink from '../../components/solid/NavLink';
+import Logo from '../../components/Logo.astro';
 
 const { Content: About } = await (await getEntry('home', 'en/about')).render();
 const { Content: Contact } = await (
@@ -25,6 +28,16 @@ const indicatorGradient =
 ---
 
 <Layout title="Home">
+  <!-- <ScrollIndicator
+    class="fixed left-2 top-1/2 -translate-y-1/2 backdrop-blur-md"
+  /> -->
+
+  <div
+    class="absolute h-6 aspect-square rounded-full border border-white-90 z-50 -translate-x-1/2 -translate-y-1/2 duration-200 transition-all pointer-events-none"
+    id="cursor"
+  >
+  </div>
+
   <div
     id="splash-screen"
     class="sm:relative sm:mt-20 h-fit sm:h-[calc(100vh-5rem)]"
@@ -34,32 +47,29 @@ const indicatorGradient =
       style={{ background: `${gradientLeft}, ${gradientRight}` }}
     >
     </div>
-    <!-- <div
-      id="cursor-indicator"
-      style={{ background: indicatorGradient }}
-      class="absolute -z-20 h-52 w-52 scale-150 rounded-full -translate-x-1/2 -translate-y-1/2 duration-300 transition bg-contain"
-    > -->
-    <!-- </div> -->
     <div
       class="relative sm:absolute sm:right-8 mt-16 sm:top-24 w-full sm:w-5/12 h-96 mx-auto sm:m-0 max-w-sm sm:max-w-2xl"
     >
       <Image
-        src={import('/src/assets/star_illustration.svg' /* @vite-ignore */)}
+        src={import('./../../assets/star_illustration.svg' /* @vite-ignore */)}
         alt="Illustration"
         class="absolute mt-[12%] ml-[2%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-[24deg] scale-[1.35] w-1/2"
       />
       <Image
-        src={import('/src/assets/portrait.png')}
+        src={import('./../../assets/portrait.png')}
         alt="Portrait"
         class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 saturate-[1.1] w-5/6 scale-95"
       />
     </div>
 
     <div
-      class="sm:absolute sm:bottom-8 rounded-3xl sm:left-10 sm:p-8 bg-gradient-to-tr from-background/60 to-background/0 to-50% px-3 flex flex-col text-5xl sm:text-display-xl font-semibold text-white-30 leading-tighter mt-16 sm:mt-60"
+      class="sm:absolute sm:bottom-8 rounded-3xl sm:left-10 sm:p-8 bg-gradient-to-tr from-background/60 to-background/0 to-50% px-3 flex flex-col text-5xl sm:text-display-xl font-semibold text-white-30-opaque leading-tighter mt-16 sm:mt-60"
     >
       <span class="text-primary">Felix Blaimauer</span>
-      <span class="hover:text-white-70 transition duration-75"
+      <NavLink opaque={false} text="Web Dev & Design" />
+      <NavLink opaque={false} text="Photo & Video" />
+      <NavLink opaque={false} text="3D Visual FX" />
+      <!-- <span class="hover:text-white-70 transition duration-75"
         >Web Dev & Design</span
       >
       <span class="hover:text-white-70 transition duration-75"
@@ -67,16 +77,21 @@ const indicatorGradient =
       >
       <span class="hover:text-white-70 transition duration-75"
         >3D Visual FX</span
-      >
+      > -->
     </div>
   </div>
 
   <Section class="mt-8" name="About">
-    <CustomMarkdown
-      class="text-2xl sm:text-body-lg leading-tight [&>h2]:font-semibold [&>h2]:text-6xl sm:[&>h2]:text-display-xl [&>h2]:text-primary"
-    >
-      <About />
-    </CustomMarkdown>
+    <div class="flex gap-20 justify-between flex-wrap">
+      <CustomMarkdown
+        class="text-2xl sm:text-body-lg leading-tight [&>h2]:font-semibold [&>h2]:text-6xl sm:[&>h2]:text-display-xl"
+      >
+        <About />
+      </CustomMarkdown>
+      <!-- <div class="grid place-items-center grow min-w-min">
+        <Logo class="w-3/4 min-w-[10rem]" />
+      </div> -->
+    </div>
   </Section>
 
   <Section class="mt-10" padding={false} name="Projects">
@@ -99,33 +114,46 @@ const indicatorGradient =
     </CustomMarkdown>
   </Section>
 
-  <!-- <script>
-  const splashScreen = document.getElementById('splash-screen');
-  const cursorIndicator = document.getElementById('cursor-indicator');
+  <script>
+    const cursor = document.getElementById('cursor');
+    const cursorIndicator = document.querySelectorAll('.cursor-custom');
 
-  if (splashScreen && cursorIndicator) {
-    splashScreen.addEventListener('mouseover', (e) => {
-      cursorIndicator.style.opacity = '1';
-    });
+    let lastX = 0;
+    let lastY = 0;
 
-    splashScreen.addEventListener('mouseout', () => {
-      cursorIndicator.style.opacity = '0';
-    });
+    const moveCursor = (e?: MouseEvent, duration: number = 200) => {
+      if (!cursor) return;
 
-    splashScreen.addEventListener('mousemove', (e) => {
-      const child = e.target.getBoundingClientRect();
-      cursorIndicator.animate(
+      lastX = e?.clientX ?? lastX;
+      lastY = e?.clientY ?? lastY;
+
+      cursor.animate(
         {
-          top: e.offsetY + child.top + 'px',
-          left: e.offsetX + child.left + 'px',
+          left: (e?.clientX ?? lastX) + window.scrollX + 'px',
+          top: (e?.clientY ?? lastY) + window.scrollY + 'px',
         },
         {
-          duration: 100,
+          duration,
           fill: 'forwards',
-          easing: 'ease',
+          easing: 'ease-out',
         },
       );
-    });
-  }
-</script> -->
+    };
+
+    window.addEventListener('mousemove', (e) => moveCursor(e));
+    window.addEventListener('scroll', () => moveCursor(undefined, 0));
+
+    if (cursor != null) {
+      cursorIndicator.forEach((el) => {
+        el.addEventListener('mouseover', () => {
+          cursor.style.height = '2rem';
+          cursor.style.background = 'rgba(255, 255, 255, 0.4)';
+        });
+        el.addEventListener('mouseout', () => {
+          cursor.style.height = '1.5rem';
+          cursor.style.background = 'none';
+        });
+      });
+    }
+  </script>
 </Layout>

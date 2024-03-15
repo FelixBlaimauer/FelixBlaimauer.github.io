@@ -11,159 +11,183 @@ interface Props {
 
 const personalInfo = await getEntry('personal', 'info');
 
-const isProd = import.meta.env.DEV;
+const isProd = import.meta.env.PROD;
 const gTag = 'G-XM0GT0NKN5';
 
 const { title, blank = false } = Astro.props;
 ---
 
 <!doctype html>
-<html lang={Astro.currentLocale ?? 'en'} transition:animate="fade">
+<html lang={Astro.currentLocale ?? 'en'}>
   <head>
     {
-      isProd &&
-      <script
-        async
-        src={`https://www.googletagmanager.com/gtag/js?id=${gTag}`}
-      ></script>
-      <script>
-        // @ts-ignore
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {
-          // @ts-ignore
-          dataLayer.push(arguments);
-        }
-        // @ts-ignore
-        gtag('js', new Date());
-
-        // @ts-ignore
-        gtag('config', gTag);
-      </script>
-    </>
+      isProd && (
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${gTag}`}
+        />
+      )
     }
-    <meta charset="utf-8" />
-    <meta
-      name="description"
-      content="Felix Blaimauer, Web Developer from Austria"
-    />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title} | Felix Blaimauer</title>
-    <ViewTransitions />
-
-    <style is:global>
-      @font-face {
-        font-family: 'Outfit';
-        src: url('/fonts/Outfit/Outfit-Regular.ttf') format('truetype');
-        font-weight: 400;
-        font-style: normal;
+    {isProd && <script>
+      // @ts-ignore
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        // @ts-ignore
+        dataLayer.push(arguments);
       }
+      // @ts-ignore
+      gtag('js', new Date());
 
-      @font-face {
-        font-family: 'Outfit';
-        src: url('/fonts/Outfit/Outfit-Medium.ttf') format('truetype');
-        font-weight: 500;
-        font-style: normal;
-      }
+      // @ts-ignore
+      gtag('config', gTag);
+    </script>
+  }
+  <meta charset="utf-8" />
+  <meta
+    name="description"
+    content="Felix Blaimauer, Web Developer from Austria"
+  />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="generator" content={Astro.generator} />
+  <title>{title} | Felix Blaimauer</title>
+  <!-- <ViewTransitions  /> -->
 
-      @font-face {
-        font-family: 'Outfit';
-        src: url('/fonts/Outfit/Outfit-SemiBold.ttf') format('truetype');
-        font-weight: 600;
-        font-style: normal;
-      }
+  <style is:global>
+    @font-face {
+      font-family: 'Outfit';
+      src: url('/fonts/Outfit/Outfit-Regular.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+    }
 
-      @font-face {
-        font-family: 'Outfit';
-        src: url('/fonts/Outfit/Outfit-Bold.ttf') format('truetype');
-        font-weight: 700;
-        font-style: normal;
-      }
+    @font-face {
+      font-family: 'Outfit';
+      src: url('/fonts/Outfit/Outfit-Medium.ttf') format('truetype');
+      font-weight: 500;
+      font-style: normal;
+    }
 
-      ::-moz-selection {
-        background-color: #ffda5533;
-      }
+    @font-face {
+      font-family: 'Outfit';
+      src: url('/fonts/Outfit/Outfit-SemiBold.ttf') format('truetype');
+      font-weight: 600;
+      font-style: normal;
+    }
 
-      ::selection {
-        background: #ffda5533;
-      }
+    @font-face {
+      font-family: 'Outfit';
+      src: url('/fonts/Outfit/Outfit-Bold.ttf') format('truetype');
+      font-weight: 700;
+      font-style: normal;
+    }
 
-      /* :target::before {
-        content: '';
-        display: block;
-        height: 200px;
-        margin-top: -200px;
-      } */
+    ::selection, ::-moz-selection {
+      @apply bg-primary/10;
+    }
 
+    :target::before {
+      content: '';
+      display: block;
+      /* height: 100px; */
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
       html {
-        scroll-behavior: smooth;
+        scroll-behavior: auto;
       }
+    }
 
-      @media (prefers-reduced-motion: reduce) {
-        html {
-          scroll-behavior: auto;
-        }
-      }
+    body {
+      @apply overflow-x-hidden bg-background text-white-90;
+      background: linear-gradient(78deg, red, yellow),
+        linear-gradient(68, blue, green);
+    }
 
-      body {
-        @apply overflow-x-hidden bg-background text-white-90;
-        background: linear-gradient(78deg, red, yellow),
-          linear-gradient(68, blue, green);
-      }
-
-      /* section {
+    /* section {
         opacity: 0;
       } */
 
-      .markdown strong {
-        @apply font-medium;
-        @apply text-white-90;
-      }
+    .animated-logo rect {
+      animation: anim-logo-gradient 3s infinite linear;
+    }
 
-      .markdown a {
-        position: relative;
-      }
+    .markdown strong {
+      @apply font-medium;
+      @apply text-white-90;
+    }
 
-      .markdown a:after {
-        content: '';
-        position: absolute;
-        width: min(max(10%, 10px), 100%);
-        marign: 0 auto;
-        left: 0;
-        bottom: -2%;
-        height: 3px;
-        @apply bg-current transition-all;
-      }
+    .markdown a {
+      position: relative;
+    }
 
-      .markdown a:hover {
-        color: white;
-      }
+    .markdown a:after {
+      content: '';
+      position: absolute;
+      width: min(max(10%, 10px), 100%);
+      marign: 0 auto;
+      left: 0;
+      bottom: -2%;
+      height: 3px;
+      @apply bg-current transition-all;
+    }
 
-      .markdown a:hover:after {
-        @apply w-full;
-      }
-    </style>
-  </head>
-  <body>
-    {!blank && <Navbar locale={Astro.currentLocale} />}
-    <slot />
-    <Footer
-      name={personalInfo.data.name}
-      email={personalInfo.data.email}
-      phone={personalInfo.data.phone}
-      class="mt-10"
-    />
-    <!-- <script>
-      import { inView, animate } from 'motion';
+    .markdown a:hover {
+      color: white;
+    }
 
+    .markdown a:hover:after {
+      @apply w-full;
+    }
+
+    @keyframes anim-logo-gradient {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-166%);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- @ts-ignore -->
+  {!blank && <Navbar locale={Astro.currentLocale} />}
+  <slot />
+  <Footer
+    name={personalInfo.data.name}
+    email={personalInfo.data.email}
+    phone={personalInfo.data.phone}
+    class="mt-10"
+  />
+  <script>
+      import { inView, animate} from 'motion';
+      
       inView('section', ({ target }) => {
+        const revealThings = target.querySelectorAll('div.reveal-thing');
+        const title = target.querySelector('h2');
+
+        if (!(revealThings.length > 0 && title)) return;
+
+        revealThings.forEach((it, idx) => {
+          console.log(idx);
+          animate(it, {
+            marginLeft: [0, '105%'],
+          }, {
+            delay: 0.5 * idx
+          });
+        });
+
         animate(
-          target,
-          { opacity: 1 },
-          { delay: 0.15, duration: 0.6, easing: 'ease' },
+          title,
+          { opacity: [0, 1], transform: ['translateX(-10px)', 'translateX(0)'] },
+          { duration: 0.2, easing: 'ease'},
         );
       });
-    </script> -->
-  </body>
+    </script>
+</body>
 </html>

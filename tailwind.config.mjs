@@ -14,11 +14,14 @@ export default {
         'display-xl': '64pt',
       },
       colors: {
-        primary: '#FFC700',
+        primary: '#F2B413',
+        secondary: '#39742E',
+        accent: '#49B692',
         background: '#1D1D1D',
         'white-90-opaque': '#e8e8e8',
         'white-90': 'rgba(255, 255, 255, 0.9)',
         'white-70': 'rgba(255, 255, 255, 0.7)',
+        'white-30-opaque': '#666666',
         'white-30': 'rgba(255, 255, 255, 0.3)',
       },
       lineHeight: {

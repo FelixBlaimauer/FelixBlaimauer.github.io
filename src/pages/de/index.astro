@@ -35,22 +35,16 @@ const indicatorGradient =
     >
     </div>
 
-    <!-- <div
-      id="cursor-indicator"
-      style={{ background: indicatorGradient }}
-      class="absolute -z-20 h-52 w-52 scale-150 rounded-full -translate-x-1/2 -translate-y-1/2 duration-300 transition bg-contain"
-    > -->
-    <!-- </div> -->
     <div
       class="relative sm:absolute sm:right-8 mt-16 sm:top-24 w-full sm:w-5/12 h-96 mx-auto sm:m-0 max-w-sm sm:max-w-2xl"
     >
       <Image
-        src={import('/src/assets/star_illustration.svg' /* @vite-ignore */)}
+        src={import('./../../assets/star_illustration.svg' /* @vite-ignore */)}
         alt="Illustration"
         class="absolute mt-[12%] ml-[2%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-[24deg] scale-[1.35] w-1/2"
       />
       <Image
-        src={import('/src/assets/portrait.png')}
+        src={import('./../../assets/portrait.png')}
         alt="Portrait"
         class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 saturate-[1.1] w-5/6 scale-95"
       />

@@ -16,62 +16,64 @@ const entry = await getEntry('projects', slug);
 const shortSlug = slug.split('/').pop();
 
 const banner = await getImage({
-  src: import(`/src/assets/projects/${shortSlug}/banner.png`),
+  src: import(`./../assets/projects/${shortSlug}/banner.png`),
 });
+
+const splashSmall = import(`./../assets/projects/${shortSlug}/splash-small.png`);
+const banner1 = import(`./../assets/projects/${shortSlug}/banner-1.png`); // wtf is this naming
 
 const href = getRelativeLocaleUrl('en', `/projects/${shortSlug}`);
 ---
 
 {
   entry && (
-    <li class="border-y border-white-30 relative group text-white-90-opaque">
-      <div class="absolute font-bold text-white-30 select-none inset-0 bg-white/30 -z-10 my-auto">
-        <div class="absolute inset-0 bg-gradient-to-r from-25% from-background to-background/60 z-10" />
-        <div class="-z-10 flex flex-col justify-evenly h-full text-[80pt] leading-tighter group-hover:opacity-0 transition-opacity">
-          <p class="scrolltext">{entry.data.title.toUpperCase().repeat(10)}</p>
-          <p class="rotate-180 scrolltext-flip">
-            {entry.data.title.toUpperCase().repeat(10)}
-          </p>
-        </div>
-      </div>
-      <div
-        style={{ backgroundImage: `url(${banner.src})` }}
-        class="absolute inset-0 -z-10 my-auto h-0 group-hover:h-full transition-all bg-cover bg-no-repeat bg-center duration-200 hover:duration-300"
-      />
-      <div class="absolute inset-0 bg-gradient-to-r -z-10 from-background/60 to-background/0 from-10% to-60% sm:to-40% group-hover:opacity-100 opacity-0 transition-opacity" />
-      <div class="flex items-center px-3 sm:px-6 md:px-12">
-        <div class="w-fit p-4 group-hover:bg-gradient-to-t rounded-3xl from-background/50 to-slate-900/0 to-70% my-8 sm:my-12 transition-all">
-          <a href={`/${Astro.currentLocale}/projects/${shortSlug}`}>
-            <ProjectTitle class="text-current" small={true} {...entry.data} />
-          </a>
-          <div class="flex gap-2 items-center mt-2">
-            {entry.data.tags.map((tag) => (
-              <Tag tag={tag} />
-            ))}
+    <a {href}>
+      <li class="border-y border-white-30 relative group text-white-90-opaque cursor-custom">
+        <div class="absolute font-bold text-white-30 select-none inset-0 bg-white/30 -z-10 my-auto">
+          <div class="absolute inset-0 bg-gradient-to-r from-25% from-background to-background/60 z-10" />
+          <div class="-z-10 flex flex-col justify-evenly h-full text-[80pt] leading-tighter group-hover:opacity-0 transition-opacity">
+            <p class="scrolltext">
+              {entry.data.title.toUpperCase().repeat(10)}
+            </p>
+            <p class="rotate-180 scrolltext-flip">
+              {entry.data.title.toUpperCase().repeat(10)}
+            </p>
           </div>
         </div>
-        <div class="flex justify-center gap-4 grow">
-          <Image
-            src={
-              import(
-                `/src/assets/projects/${shortSlug}/splash-small.png` /* @vite-ignore */
-              )
-            }
-            alt={`${entry.data.title} banner`}
-            class="h-56 w-auto hidden sm:block"
-          />
-          <Image
-            src={
-              import(
-                `/src/assets/projects/${shortSlug}/banner-1.png` /* @vite-ignore */
-              )
-            }
-            alt={`${entry.data.title} banner 1`}
-            class="h-56 w-auto hidden lg:block"
-          />
+        <div
+          style={{ backgroundImage: `url(${banner.src})` }}
+          class="absolute inset-0 -z-10 my-auto h-0 group-hover:h-full transition-all bg-cover bg-no-repeat bg-center duration-200 hover:duration-300"
+        />
+        <div class="absolute inset-0 bg-gradient-to-r -z-10 from-background/60 to-background/0 from-10% to-60% sm:to-40% group-hover:opacity-100 opacity-0 transition-opacity" />
+        <div class="flex items-center px-3 sm:px-6 md:px-12">
+          <div class="w-fit p-4 group-hover:bg-gradient-to-t rounded-3xl from-background/50 to-slate-900/0 to-70% my-8 sm:my-12 transition-all">
+            <ProjectTitle class="text-current" small={true} {...entry.data} />
+            <div class="flex gap-2 items-center mt-2">
+              <!-- @ts-ignore -->
+              {entry.data.tags.map((tag) => (
+                <Tag tag={tag} />
+              ))}
+            </div>
+          </div>
+          <div class="flex justify-center gap-4 grow">
+           <Image
+              src={
+                splashSmall
+              }
+              alt={`${entry.data.title} banner`}
+              class="h-56 w-auto hidden sm:block"
+            /> 
+            <Image
+              src={
+                banner1
+              }
+              alt={`${entry.data.title} banner 1`}
+              class="h-56 w-auto hidden lg:block"
+            />
+          </div>
         </div>
-      </div>
-    </li>
+      </li>
+    </a>
   )
 }
 

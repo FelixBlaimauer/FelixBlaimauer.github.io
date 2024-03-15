@@ -1,0 +1,17 @@
+---
+import { Image } from 'astro:assets';
+import LogoSource from '/src/assets/logo.svg';
+import type { ClassProps } from '../interfaces/ClassProps';
+
+interface Props extends ClassProps {
+  animated?: boolean;
+}
+
+const { class: className, animated = false } = Astro.props;
+---
+
+<Image
+  class:list={[className, { 'animated-logo': animated }]}
+  src={LogoSource}
+  alt="Logo"
+/>
