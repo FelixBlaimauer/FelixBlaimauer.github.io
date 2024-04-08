@@ -36,9 +36,6 @@ export default function Footer({
             <a href="/">Home</a>
           </li>
           <li>
-            <a href="/projects">Projects</a>
-          </li>
-          <li>
             <a href="/legal">Legal</a>
           </li>
         </ul>

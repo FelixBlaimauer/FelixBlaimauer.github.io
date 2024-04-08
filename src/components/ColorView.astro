@@ -1,0 +1,50 @@
+---
+import { twMerge } from 'tailwind-merge';
+import type { ClassProps } from '../interfaces/ClassProps';
+
+interface Color {
+  name: string;
+  hex: string;
+}
+
+interface Props extends ClassProps {
+  colors: Color[];
+}
+
+function hexToLuminance(hex: string): number {
+  // Remove the '#' character if present
+  hex = hex.replace(/^#/, '');
+
+  // Convert hex to RGB
+  let r = parseInt(hex.substr(0, 2), 16) / 255;
+  let g = parseInt(hex.substr(2, 2), 16) / 255;
+  let b = parseInt(hex.substr(4, 2), 16) / 255;
+
+  // Calculate luminance using relative luminance formula
+  let luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+
+  // Convert luminance to percentage (0 to 100)
+  luminance *= 100;
+
+  return luminance;
+}
+
+const { colors, class: className } = Astro.props;
+---
+
+<div class={twMerge('flex flex-wrap justify-evenly', className)}>
+  {
+    colors.map(({ hex, name }) => (
+      <div
+        class="w-1/6 flex flex-col leading-tighter gap-2 items-center justify-center py-4 rounded-lg"
+        style={{
+          background: hex,
+          color: hexToLuminance(hex) > 50 ? 'black' : 'white',
+        }}
+      >
+        <p class="text-body-lg font-semibold">{name}</p>
+        <p>{hex}</p>
+      </div>
+    ))
+  }
+</div>

@@ -10,6 +10,8 @@ color: '#00ff70'
 
 import Section from '../../../components/Section.astro';
 import H2 from '../../../components/markdown/h2.astro';
+import ColorView from '../../../components/ColorView.astro';
+import {Icon} from "astro-icon/components";
 
 export const components = {
   h2: H2,
@@ -27,8 +29,6 @@ export const components = {
   For a closer look, check out the <a href="https://quetzal-vpn.dev" target='_blank'>project website</a>.
 </Section>
 
-{/* ![Quetzal Mockup](../../assets/projects/quetzal-vpn/banner-1.png) */}
-
 <Section class="text-body-lg mt-12" markdown={{list: true}} name="More Details">
   I developed **QuetzalVPN** in a team of 4 as a school project at <a href="https://www.sz-ybbs.ac.at" target="_blank">IT-HTL Ybbs</a>.
   My main focus was the **frontend** and **UI / UX** design.
@@ -39,4 +39,123 @@ export const components = {
   using the **Ktor** framework while also being reponsible for server configuration and communication.
 
   I did my design in **Figma** and implemented it with **React** and **TailwindCSS** for the styling.
+</Section>
+
+<Section class='text-body-lg mt-12 relative pb-8 text-center' name="Design">
+
+  ## Design
+
+  <div class='absolute top-2 left-0 w-full h-full flex flex-col -z-10'>
+    <div class='bg-gradient-to-b from-transparent grow to-80% to-[#00ff70]/40' />
+    <div class="bg-[#00ff70]/40 h-60 clip-circular" />
+  </div>
+
+  <ColorView class='my-12' colors={[
+    {name: 'Primary', hex: '#00ff70'}, {name: 'Warning', hex: '#f8d40d'}, {name: 'Error', hex: '#ff3633'},
+  ]}/>
+
+  <div class='rounded-2xl w-fit mx-auto mt-8 mb-2 overflow-hidden border border-white/20 shadow-md'> 
+    ![Quetzal Mockup](../../../assets/projects/quetzal-vpn/screenshot-config.png)
+  </div>
+</Section>
+
+<Section class='mt-12' name='Components'>
+  <h4 class="text-center text-body-lg">Buttons</h4>
+  <div class="flex flex-wrap gap-4 justify-evenly items-center scale-75">
+    <div>![Primary Button](../../../assets/projects/quetzal-vpn/components/btn-primary.svg) </div>
+    <div>![Button](../../../assets/projects/quetzal-vpn/components/btn-grey.svg) </div>
+    <div>![Warning Button](../../../assets/projects/quetzal-vpn/components/btn-warning.svg) </div>
+    <div>![Error Button](../../../assets/projects/quetzal-vpn/components/btn-error.svg) </div>
+  </div>
+
+  <h4 class="text-center text-body-lg mt-8">Inputs</h4>
+  <div class="flex flex-wrap gap-4 justify-evenly items-center">
+    <div>![Input fields](../../../assets/projects/quetzal-vpn/components/inputs.svg) </div>
+    <div class='scale-50'>![Toggle-switch](../../../assets/projects/quetzal-vpn/components/toggle.svg) </div>
+    <div>![Search](../../../assets/projects/quetzal-vpn/components/search.svg) </div>
+    <div class="scale-75">![Checkbox](../../../assets/projects/quetzal-vpn/components/checkbox.svg) </div>
+    <div>![Combobox](../../../assets/projects/quetzal-vpn/components/combobox.svg) </div>
+  </div>
+
+  <div class='flex items-center gap-3 flex-col mt-12'>
+    <p class='text-body-lg'>These fully accesable components were created with</p>
+    <div class='scale-125'>
+      ![Headless UI](../../../assets/icons/headless-ui.svg)
+    </div>
+    <div class='flex items-center gap-2 mt-1'>
+      <div class='scale-125'>
+        ![React](../../../assets/icons/react.svg)
+      </div>
+      <div class='scale-75'>
+        ![TailwindCSS](../../../assets/icons/tailwind.svg)
+      </div>
+    </div>
+  </div>
+</Section>
+
+<Section class='mt-12' name='User Management'>
+
+  ## User Management
+
+  <div class="relative">
+    <div class="absolute w-96 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 appear-in-view">
+      <div class="-translate-x-[114%] -translate-y-[27%]">
+        <div class="flex gap-1 items-center mt-2">
+          <Icon name="heroicons:document-arrow-down-20-solid" class='text-3xl' style={{color: '#00ff70'}} />
+          <h3 class='text-body-lg'>Profile Download</h3>
+        </div>
+
+        <p class="text-xl text-white-70">Gone are the days of using shell scripts to generate profile files for OpenVPN. One click and your download starts!</p>
+      
+        <div class="w-96 ml-24 mt-2">
+        ![Descriptor Illustration](../../../assets/descriptor.svg)
+        </div>
+      </div>
+    </div>
+
+    <div class="absolute w-96 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 appear-in-view">
+      <div class="translate-x-[140%] translate-y-[5.5rem]">
+        <div class="flex gap-1 items-center mt-2">
+          <Icon name="heroicons:user-solid" class='text-3xl' style={{color: '#00ff70'}} />
+          <h3 class='text-body-lg'>User Actions</h3>
+        </div>
+
+        <p class="text-xl text-white-70">Temporarily disable or delete a users access to connect to your VPN.</p>
+      
+        <div class="w-96 -ml-48 mt-2 scale-x-[-1]">
+        ![Descriptor Illustration](../../../assets/descriptor.svg)
+        </div>
+        <div class="w-96 -ml-48 -mt-20 scale-x-[-1]">
+        ![Descriptor Illustration](../../../assets/descriptor.svg)
+        </div>
+      </div>
+    </div>
+
+    <div class='w-4/6 md:w-[30%] mx-auto rounded-2xl shadow overflow-hidden border border-white/20'>
+    ![User Management](../../../assets/projects/quetzal-vpn/screenshot-user.png)
+    </div>
+  </div>
+
+  <div class="relative mt-16 opacity-0 appear-in-view">
+
+    <Icon name="heroicons:user-group-solid" class="-z-10 text-white/5 absolute left-1/2 -translate-x-1/2 top-12 text-9xl scale-[3]" />
+
+    <div class="w-[40%] text-center mb-12 mx-auto">
+      <div class="inline-flex gap-1 items-center text-4xl">
+        <Icon name="heroicons:chart-bar-square-16-solid" class="text-[#00ff70]" />
+        <h3>Live Insights</h3>
+      </div>
+      <p class="text-body-sm text-white-70">Watch live data on all users regarding their connections status and even IP address</p>
+    </div>
+
+    <div class='w-5/6 mx-auto rounded-2xl shadow overflow-hidden border border-white/20'>
+     ![User Live Insights](../../../assets/projects/quetzal-vpn/screenshot-insights.png)
+    </div>
+
+    <div class="mx-auto w-fit flex items-center gap-4 mt-6">
+      <p><div class="inline-block h-4 rounded -mr-2 aspect-square bg-[#00ff70]"></div> Connected</p>
+      <p><div class="inline-block h-4 rounded -mr-2 aspect-square bg-[#f8d40d]"></div> Idle</p>
+      <p><div class="inline-block h-4 rounded -mr-2 aspect-square bg-[#ff3633]"></div> Disabled</p>
+    </div>
+  </div>
 </Section>

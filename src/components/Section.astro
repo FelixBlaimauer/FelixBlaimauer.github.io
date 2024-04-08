@@ -20,7 +20,13 @@ const href = `#${id}`;
     background: red !important;
   }
 </style>
-<section class:list={[{ 'px-3 sm:px-14': padding ?? true }, className]}>
+<section
+  class:list={[
+    { 'px-3 sm:px-14': padding ?? true },
+    'appear-in-view',
+    className,
+  ]}
+>
   <!-- <div
     class={`flex items-center gap-2 text-white-30 text-body-sm font-medium ${
       padding === false ? 'px-3 sm:px-10' : ''

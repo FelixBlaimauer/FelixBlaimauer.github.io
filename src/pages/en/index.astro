@@ -8,6 +8,7 @@ import ProjectList from '../../components/ProjectList.astro';
 import ScrollIndicator from '../../components/solid/ScrollIndicator';
 import NavLink from '../../components/solid/NavLink';
 import Logo from '../../components/Logo.astro';
+import H2 from '../../components/markdown/h2.astro';
 
 const { Content: About } = await (await getEntry('home', 'en/about')).render();
 const { Content: Contact } = await (
@@ -15,7 +16,7 @@ const { Content: Contact } = await (
 ).render();
 
 const projects = (await getCollection('projects')).filter((it) =>
-  it.slug.startsWith(`${Astro.currentLocale}/`),
+  it.slug.startsWith(`${Astro.currentLocale}/`)
 );
 
 const gradientLeft =
@@ -31,12 +32,6 @@ const indicatorGradient =
   <!-- <ScrollIndicator
     class="fixed left-2 top-1/2 -translate-y-1/2 backdrop-blur-md"
   /> -->
-
-  <div
-    class="absolute h-6 aspect-square rounded-full border border-white-90 z-50 -translate-x-1/2 -translate-y-1/2 duration-200 transition-all pointer-events-none"
-    id="cursor"
-  >
-  </div>
 
   <div
     id="splash-screen"
@@ -58,6 +53,7 @@ const indicatorGradient =
       <Image
         src={import('./../../assets/portrait.png')}
         alt="Portrait"
+        loading="eager"
         class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 saturate-[1.1] w-5/6 scale-95"
       />
     </div>
@@ -81,79 +77,26 @@ const indicatorGradient =
     </div>
   </div>
 
-  <Section class="mt-8" name="About">
-    <div class="flex gap-20 justify-between flex-wrap">
-      <CustomMarkdown
-        class="text-2xl sm:text-body-lg leading-tight [&>h2]:font-semibold [&>h2]:text-6xl sm:[&>h2]:text-display-xl"
-      >
-        <About />
-      </CustomMarkdown>
-      <!-- <div class="grid place-items-center grow min-w-min">
-        <Logo class="w-3/4 min-w-[10rem]" />
-      </div> -->
-    </div>
+  <Section name="About" class="mt-8">
+    <CustomMarkdown xl={true}>
+      <About />
+    </CustomMarkdown>
   </Section>
 
   <Section class="mt-10" padding={false} name="Projects">
-    <h2
+    <H2
       class="text-6xl sm:text-display-xl text-primary font-semibold leading-tighter px-3 sm:px-10"
     >
-      Check out some of my projects
-    </h2>
+      Check out my projects
+    </H2>
     <div class="mt-8">
       <ProjectList projects={projects.map((it) => it.slug)} />
     </div>
   </Section>
 
   <Section class="mt-10" name="Contact">
-    <CustomMarkdown
-      list={false}
-      class="text-2xl sm:text-body-lg leading-tight [&>h2]:font-semibold [&>h2]:text-6xl sm:[&>h2]:text-display-xl [&>h2]:text-primary"
-    >
+    <CustomMarkdown list={false} xl={true}>
       <Contact />
     </CustomMarkdown>
   </Section>
-
-  <script>
-    const cursor = document.getElementById('cursor');
-    const cursorIndicator = document.querySelectorAll('.cursor-custom');
-
-    let lastX = 0;
-    let lastY = 0;
-
-    const moveCursor = (e?: MouseEvent, duration: number = 200) => {
-      if (!cursor) return;
-
-      lastX = e?.clientX ?? lastX;
-      lastY = e?.clientY ?? lastY;
-
-      cursor.animate(
-        {
-          left: (e?.clientX ?? lastX) + window.scrollX + 'px',
-          top: (e?.clientY ?? lastY) + window.scrollY + 'px',
-        },
-        {
-          duration,
-          fill: 'forwards',
-          easing: 'ease-out',
-        },
-      );
-    };
-
-    window.addEventListener('mousemove', (e) => moveCursor(e));
-    window.addEventListener('scroll', () => moveCursor(undefined, 0));
-
-    if (cursor != null) {
-      cursorIndicator.forEach((el) => {
-        el.addEventListener('mouseover', () => {
-          cursor.style.height = '2rem';
-          cursor.style.background = 'rgba(255, 255, 255, 0.4)';
-        });
-        el.addEventListener('mouseout', () => {
-          cursor.style.height = '1.5rem';
-          cursor.style.background = 'none';
-        });
-      });
-    }
-  </script>
 </Layout>

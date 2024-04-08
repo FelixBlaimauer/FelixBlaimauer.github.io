@@ -8,20 +8,20 @@ const { class: className } = Astro.props;
 ---
 
 <div class="relative w-fit">
-  <h2 class={twMerge('font-medium text-5xl sm:text-6xl mb-4', className)}>
+  <h2 class={twMerge('font-medium text-5xl sm:text-6xl mb-4 w-fit', className)}>
     <slot />
   </h2>
 
   <div
-    class="reveal-thing absolute opacity-75 left-0 h-1/2 rounded-full w-24 top-1/2 transition-all -translate-y-1/2 bg-gradient-to-r from-primary to-accent to-[200%] shadow-md"
+    class="reveal-thing absolute opacity-75 left-0 h-8 rounded-full w-24 top-1/2 transition-all -translate-y-1/2 bg-gradient-to-r from-primary to-accent to-[200%] shadow-md"
   >
   </div>
   <div
-    class="reveal-thing absolute left-28 h-1/2 opacity-75 rounded-full w-12 top-1/2 transition-all -translate-y-1/2 bg-gradient-to-r from-primary to-accent from-[-150%] to-[120%] shadow-md"
+    class="reveal-thing absolute left-28 h-8 opacity-75 rounded-full w-12 top-1/2 transition-all -translate-y-1/2 bg-gradient-to-r from-primary to-accent from-[-150%] to-[120%] shadow-md"
   >
   </div>
   <div
-    class="reveal-thing absolute shadow-md left-44 h-1/2 rounded-full opacity-75 aspect-square top-1/2 transition-all -translate-y-1/2 bg-gradient-to-r from-primary from-[-400%] to-accent to-[100%]"
+    class="reveal-thing absolute shadow-md left-44 h-8 rounded-full opacity-75 aspect-square top-1/2 transition-all -translate-y-1/2 bg-gradient-to-r from-primary from-[-400%] to-accent to-[100%]"
   >
   </div>
 </div>

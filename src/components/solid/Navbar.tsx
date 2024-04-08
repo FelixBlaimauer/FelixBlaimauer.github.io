@@ -29,11 +29,14 @@ export default function Navbar({
   return (
     <nav
       class={twJoin(
-        'cursor-custom fixed left-0 top-0 z-30 flex h-20 w-full items-center justify-between border-b border-white-30 px-4 backdrop-blur-sm sm:px-8',
+        'fixed left-0 top-0 z-30 flex h-20 w-full items-center justify-between border-b border-white-30 px-4 backdrop-blur-sm sm:px-8',
         className,
       )}
     >
-      <a href={`/${locale}`} class="z-10 h-[38pt] overflow-hidden">
+      <a
+        href={`/${locale}`}
+        class="cursor-custom z-10 h-[38pt] cursor-none overflow-hidden"
+      >
         <div class="flex flex-col text-body-sm font-extrabold leading-tighter text-white-70 transition hover:-translate-y-1/3 hover:text-white-90">
           <span>Felix</span>
           <span>Blaimauer</span>

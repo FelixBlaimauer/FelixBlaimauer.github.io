@@ -12,7 +12,6 @@ interface Props {
 const personalInfo = await getEntry('personal', 'info');
 
 const isProd = import.meta.env.PROD;
-const gTag = 'G-XM0GT0NKN5';
 
 const { title, blank = false } = Astro.props;
 ---
@@ -22,27 +21,19 @@ const { title, blank = false } = Astro.props;
   <head>
     {
       isProd && (
-        <script
-          async
-          src={`https://www.googletagmanager.com/gtag/js?id=${gTag}`}
-        />
+        <script>
+          // @ts-ignore
+          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          // @ts-ignore
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          // @ts-ignore
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-WLCGX23J');</script>
       )
     }
-    {isProd && <script>
-      // @ts-ignore
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        // @ts-ignore
-        dataLayer.push(arguments);
-      }
-      // @ts-ignore
-      gtag('js', new Date());
 
-      // @ts-ignore
-      gtag('config', gTag);
-    </script>
-  }
-  <meta charset="utf-8" />
+<meta charset="utf-8" />
   <meta
     name="description"
     content="Felix Blaimauer, Web Developer from Austria"
@@ -59,6 +50,7 @@ const { title, blank = false } = Astro.props;
       src: url('/fonts/Outfit/Outfit-Regular.ttf') format('truetype');
       font-weight: 400;
       font-style: normal;
+      font-display: swap;
     }
 
     @font-face {
@@ -66,6 +58,7 @@ const { title, blank = false } = Astro.props;
       src: url('/fonts/Outfit/Outfit-Medium.ttf') format('truetype');
       font-weight: 500;
       font-style: normal;
+      font-display: swap;
     }
 
     @font-face {
@@ -73,6 +66,7 @@ const { title, blank = false } = Astro.props;
       src: url('/fonts/Outfit/Outfit-SemiBold.ttf') format('truetype');
       font-weight: 600;
       font-style: normal;
+      font-display: swap;
     }
 
     @font-face {
@@ -80,6 +74,7 @@ const { title, blank = false } = Astro.props;
       src: url('/fonts/Outfit/Outfit-Bold.ttf') format('truetype');
       font-weight: 700;
       font-style: normal;
+      font-display: swap;
     }
 
     ::selection, ::-moz-selection {
@@ -121,6 +116,14 @@ const { title, blank = false } = Astro.props;
       @apply text-white-90;
     }
 
+    .markdown h2 {
+      @apply text-white-90 font-medium text-5xl sm:text-6xl;
+    }
+
+    .markdown.title-md h2 {
+      @apply text-primary font-semibold text-6xl sm:text-display-xl;
+    }
+
     .markdown a {
       position: relative;
     }
@@ -144,6 +147,18 @@ const { title, blank = false } = Astro.props;
       @apply w-full;
     }
 
+    .reveal-thing {
+      opacity: 0;
+    }
+
+    .clip-circular {
+      clip-path: ellipse(55% 70% at 50% 25%);
+    }
+
+    .appear-in-view {
+      opacity: 0;
+    }
+
     @keyframes anim-logo-gradient {
       0% {
         transform: translateX(0);
@@ -157,37 +172,87 @@ const { title, blank = false } = Astro.props;
 <body>
   <!-- @ts-ignore -->
   {!blank && <Navbar locale={Astro.currentLocale} />}
+  
+  <div
+    class="absolute h-6 aspect-square rounded-full border border-white-90 z-50 -translate-x-1/2 -translate-y-1/2 duration-200 transition-all pointer-events-none"
+    id="cursor"
+  >
+  </div>
+
+
   <slot />
+  
   <Footer
     name={personalInfo.data.name}
     email={personalInfo.data.email}
     phone={personalInfo.data.phone}
     class="mt-10"
   />
+  
+  <!-- <script data-astro-rerun > Pretty sure this would fix animation issues with ViewTransitins, but it doesnt allow use of npm modules ..., so idfk how to fix -->
   <script>
       import { inView, animate} from 'motion';
       
-      inView('section', ({ target }) => {
-        const revealThings = target.querySelectorAll('div.reveal-thing');
-        const title = target.querySelector('h2');
+      inView('.appear-in-view', ({target}) => {
 
-        if (!(revealThings.length > 0 && title)) return;
+        // doesnt really work, in chrome kinda in firefox flickering, wthh
+        // const revealThings = target.querySelectorAll('.reveal-thing');
+        
+        // revealThings.forEach((thing, index) => {
+        //   animate(thing, {
+        //     opacity: [0, 1],
+        //   }, {
+        //     delay: .2 * index, duration: .5, easing: 'ease'
+        //   });
+        // });
 
-        revealThings.forEach((it, idx) => {
-          console.log(idx);
-          animate(it, {
-            marginLeft: [0, '105%'],
-          }, {
-            delay: 0.5 * idx
-          });
+        animate(target, {
+          opacity: [0, 1],
+        }, {
+          delay: .2, duration: .5, easing: 'ease'
         });
-
-        animate(
-          title,
-          { opacity: [0, 1], transform: ['translateX(-10px)', 'translateX(0)'] },
-          { duration: 0.2, easing: 'ease'},
-        );
       });
+
+    const cursor = document.getElementById('cursor');
+    const cursorIndicator = document.querySelectorAll('.cursor-custom');
+
+    let lastX = 0;
+    let lastY = 0;
+
+    const moveCursor = (e?: MouseEvent, duration: number = 200) => {
+      if (!cursor) return;
+
+      lastX = e?.clientX ?? lastX;
+      lastY = e?.clientY ?? lastY;
+
+      cursor.animate(
+        {
+          left: (e?.clientX ?? lastX) + window.scrollX + 'px',
+          top: (e?.clientY ?? lastY) + window.scrollY + 'px',
+        },
+        {
+          duration,
+          fill: 'forwards',
+          easing: 'ease-out',
+        }
+      );
+    };
+    
+    window.addEventListener('mousemove', (e) => moveCursor(e));
+    window.addEventListener('scroll', () => moveCursor(undefined, 0));
+
+    if (cursor != null) {
+      cursorIndicator.forEach((el) => {
+        el.addEventListener('mouseover', () => {
+          cursor.style.height = '2rem';
+          cursor.style.background = 'rgba(255, 255, 255, 0.4)';
+        });
+        el.addEventListener('mouseout', () => {
+          cursor.style.height = '1.5rem';
+          cursor.style.background = 'none';
+        });
+      });
+    }
     </script>
 </body>
 </html>
