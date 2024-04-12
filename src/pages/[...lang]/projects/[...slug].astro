@@ -37,8 +37,13 @@ const splashLarge = import(`../../../assets/projects/${slug}/splash-large.png`);
       h1={true}
     />
     <div class="mt-8 sm:t-14 mb-12 px-12 flex justify-center">
-      <Image src={splashSmall} class="lg:hidden" alt="" />
-      <Image src={splashLarge} class="hidden lg:block px-14" alt="" />
+      <Image src={splashSmall} loading="eager" class="lg:hidden" alt="" />
+      <Image
+        src={splashLarge}
+        loading="eager"
+        class="hidden lg:block px-14"
+        alt=""
+      />
     </div>
 
     <!-- <Section class="mt-12 px-20" name="Details"> -->

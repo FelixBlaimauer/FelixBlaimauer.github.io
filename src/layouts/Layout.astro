@@ -38,7 +38,7 @@ const { title, blank = false } = Astro.props;
     name="description"
     content="Felix Blaimauer, Web Developer from Austria"
   />
-  <meta name="viewport" content="width=device-width" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="generator" content={Astro.generator} />
   <title>{title} | Felix Blaimauer</title>
@@ -98,9 +98,8 @@ const { title, blank = false } = Astro.props;
     }
 
     body {
+      width: 100vw;
       @apply overflow-x-hidden bg-background text-white-90;
-      background: linear-gradient(78deg, red, yellow),
-        linear-gradient(68, blue, green);
     }
 
     /* section {
@@ -155,7 +154,7 @@ const { title, blank = false } = Astro.props;
       clip-path: ellipse(55% 70% at 50% 25%);
     }
 
-    .appear-in-view {
+    .appear-in-view .slide-in-view {
       opacity: 0;
     }
 
@@ -174,7 +173,7 @@ const { title, blank = false } = Astro.props;
   {!blank && <Navbar locale={Astro.currentLocale} />}
   
   <div
-    class="absolute h-6 aspect-square rounded-full border border-white-90 z-50 -translate-x-1/2 -translate-y-1/2 duration-200 transition-all pointer-events-none"
+    class="hidden sm:block absolute h-6 aspect-square rounded-full border border-white-90 z-50 -translate-x-1/2 -translate-y-1/2 duration-200 transition-all pointer-events-none"
     id="cursor"
   >
   </div>
@@ -194,22 +193,19 @@ const { title, blank = false } = Astro.props;
       import { inView, animate} from 'motion';
       
       inView('.appear-in-view', ({target}) => {
-
-        // doesnt really work, in chrome kinda in firefox flickering, wthh
-        // const revealThings = target.querySelectorAll('.reveal-thing');
-        
-        // revealThings.forEach((thing, index) => {
-        //   animate(thing, {
-        //     opacity: [0, 1],
-        //   }, {
-        //     delay: .2 * index, duration: .5, easing: 'ease'
-        //   });
-        // });
-
         animate(target, {
           opacity: [0, 1],
         }, {
           delay: .2, duration: .5, easing: 'ease'
+        });
+      });
+
+      inView('.slide-in-view', ({target}) => {
+        animate(target, {
+          opacity: [0, 1],
+          transform: ['translateY(50px)', 'translateY(0)'],
+        }, {
+          delay: 0.4, duration: .5, easing: 'ease'
         });
       });
 

@@ -12,6 +12,15 @@ import Section from '../../../components/Section.astro';
 import H2 from '../../../components/markdown/h2.astro';
 import {Icon} from "astro-icon/components";
 
+import recording from '../../../assets/projects/explore-htl/explorehtl-recording.webm';
+import leaderboard from '../../../assets/projects/explore-htl/leaderboard.svg';
+import phone from '../../../assets/projects/explore-htl/phone.svg';
+import arcore from '../../../assets/icons/ar_core.svg';
+import svelte from '../../../assets/icons/svelte.svg';
+import unity from '../../../assets/icons/unity.svg';
+
+import {Image} from 'astro:assets';
+
 
 export const components = {
   h2: H2
@@ -25,19 +34,12 @@ export const components = {
   For this project I worked together with <a target='_blank' href='https://hannes-scheibelauer.at'>Hannes Scheibelauer</a>.
 </Section>
 
-<Section class="text-body-lg mt-8" markdown={{list: true}} name="Try it out">
-## Try it out
-
-  Grab youreslf a build for android from <a href="https://bit.ly/explore-HTL" target="_blank">Google Drive</a> along with the tracking markers.
-  Install the app and try scanning the markers with your phone.
-</Section>
-
 <Section class="text-body-lg mt-8" name="Architecture">
 ## Architecture
 
-  <div class="flex justify-center">
-    <div class="w-fit flex flex-col gap-2 justify-center items-center px-5 py-2 rounded-xl bg-white/10">
-      <p class="text-center">Printed Page</p>
+  <div class="flex items-center justify-center flex-wrap gap-16">
+    <div class="w-fit h-fit flex flex-col gap-2 justify-center items-center px-5 py-2 rounded-xl bg-white/10">
+      <p class="text-center select-none">Printed Page</p>
 
       <div class='w-full flex flex-col gap-2'>
         <div class='h-4 rounded-full w-7/8 bg-gradient-to-tr from-white/20 to-white/30' />
@@ -47,5 +49,107 @@ export const components = {
 
       <Icon name="heroicons:qr-code-solid" class="text-9xl text-[#00aaca]" />
     </div>
+
+    <div class="relative">
+      <Image class="w-48" src={phone} alt="Phone illustration" />
+
+      <div class='absolute inset-0 flex items-center flex-col justify-evenly'>
+        <Image alt="Google ARCore" class="w-24" src={arcore} />
+        <Image alt="Unity Game Engine" class="bg-white p-4 rounded-xl w-24 aspect-square" src={unity} />
+      </div>
+    </div>
+    
+    <div class="ml-2 gap-4 flex flex-col items-center">
+      ![Firebase Logo](../../../assets/icons/firebase.svg)
+
+      <span class="text-gray-300">Firebase</span>
+    </div>
+
+    <div class="scale-75">
+      ![Leaderboard](../../../assets/projects/explore-htl/leaderboard.svg)
+    </div>
   </div>
+
+  <div class='flex flex-col gap-12 relative appear-in-view mt-24 mb-24 h-[1200px]'>
+    <div class='relative pl-8 py-4 sm:p-0 sm:absolute sm:left-12 sm:top-0 -mt-12 h-full mx-auto sm:m-0 text-center sm:text-left w-11/12 flex flex-col gap-8 justify-evenly'>
+      <div class="sm:w-96 sm:ml-24 slide-in-view">
+        <div class="flex gap-1 justify-center sm:justify-normal items-center mt-2">
+          <Icon name="heroicons:user-solid" class='text-3xl' style={{color: '#00aaca'}} />
+          <h3 class='text-body-lg'>Registration</h3>
+        </div>
+
+        <p class="text-xl text-white-70">Choose a nickname by which you will be reffered to on the leaderboard</p>
+      </div>
+
+      <div class="sm:w-96 sm:ml-24 slide-in-view">
+        <div class="flex gap-1 justify-center sm:justify-normal items-center mt-2">
+          <Icon name="heroicons:camera-20-solid" class='text-3xl' style={{color: '#02bbc1'}} />
+          <h3 class='text-body-lg'>Scan a QR-Code</h3>
+        </div>
+
+        <p class="text-xl text-white-70">Look for a page with a QR-Code on it and let the app do its magic</p>
+      </div>
+
+      <div class="sm:w-96 sm:ml-24 slide-in-view">
+        <div class="flex gap-1 justify-center sm:justify-normal items-center mt-2">
+          <Icon name="heroicons:queue-list-16-solid" class='text-3xl' style={{color: '#04c7ba'}} />
+          <h3 class='text-body-lg'>Overview</h3>
+        </div>
+
+        <p class="text-xl text-white-70">Take a look at what items you have already found aswell as infos on your ranking.</p>
+      </div>
+
+      <div class="sm:w-96 sm:ml-24 slide-in-view">
+        <div class="flex gap-1 justify-center sm:justify-normal items-center mt-2">
+          <Icon name="heroicons:gift-top-20-solid" class='text-3xl' style={{color: '#07dcaf'}} />
+          <h3 class='text-body-lg'>Rewards</h3>
+        </div>
+
+        <p class="text-xl text-white-70">When we presented this at our schools open house, you would get a reward for showing us that you completed the game.</p>
+      </div>
+
+      <div class="sm:hidden absolute top-0 left-1 -translate-x-1/2 rounded-full w-4 h-full bg-gradient-to-b from-[#00aaca] to-[#08E6A9]" />
+    </div>
+
+    <div class="hidden sm:block absolute top-0 left-1/2 -translate-x-1/2 rounded-full w-4 h-full bg-gradient-to-b from-[#00aaca] to-[#08E6A9]" />
+
+    <video autoplay loop muted playsinline class='sm:sticky shadow top-[5.5rem] slide-in-view left-2/3 w-80 sm:w-72 mx-auto sm:m-0 rounded-2xl'>
+      <source src={recording} type='video/webm' />
+      Video dont work
+    </video>
+  </div>
+</Section>
+
+<Section name='3D-Models' class='mt-48 sm:mt-56 sm:m-0' markdown={{}}>
+  <div class=' sm:w-1/2 mx-auto text-center'>
+    <div class='text-4xl justify-center p-0 flex gap-2 items-center'>
+      <Icon name="heroicons:cube-transparent-solid" class="text-[#00aaca]" />
+      <h3 class="text-white-90">3D Models</h3>
+    </div>
+    <p class='text-white-70 text-body-sm'>All models used in ExploreHTL were created by hand in blender. The follwing are a few examples.</p>
+  </div>
+
+  <div class='flex justify-evenly flex-wrap gap-x-4 px-4'>
+    <div class="w-64">![Wires 3D-model](../../../assets/projects/explore-htl/models/db_uebung.png)</div>
+    <div class="w-64">![Switch 3D-model](../../../assets/projects/explore-htl/models/switch.png)</div>
+    <div class="w-64">![School utensils 3D-model](../../../assets/projects/explore-htl/models/utensils.png)</div>
+  </div>
+</Section>
+
+<Section class="mt-8" name='Leaderboard' markdown={{}}>
+  <div class='sm:w-1/2 mx-auto text-center'>
+    <div class='text-4xl justify-center p-0 flex gap-2 items-center'>
+      <Icon name="heroicons:trophy" class="text-[#00aaca]" />
+      <h3 class="text-white-90">Leaderboard</h3>
+    </div>
+    <p class='text-white-70 text-body-sm'>In addition to the app itself, we also create a  leaderboard as a web-app with
+    <a href="https://svelte.dev/" target='_blank'>Svelte <Image alt="Svelte Logo" class="inline w-fit mb-3 h-8" src={svelte} /></a>.</p>
+  </div>
+</Section>
+
+<Section class="sm:text-body-lg text-xl mt-12" markdown={{}} name="Try it out">
+## Try it out
+
+  Grab youreslf a build for android from <a href="https://bit.ly/explore-HTL" target="_blank">Google Drive</a> along with the tracking markers.
+  Install the app and try scanning the markers with your phone.
 </Section>

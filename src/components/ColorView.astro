@@ -32,11 +32,11 @@ function hexToLuminance(hex: string): number {
 const { colors, class: className } = Astro.props;
 ---
 
-<div class={twMerge('flex flex-wrap justify-evenly', className)}>
+<div class={twMerge('flex flex-wrap justify-evenly gap-4', className)}>
   {
     colors.map(({ hex, name }) => (
       <div
-        class="w-1/6 flex flex-col leading-tighter gap-2 items-center justify-center py-4 rounded-lg"
+        class="w-full sm:w-1/4 md:w-1/6 sm:px-8 flex flex-col leading-tighter gap-2 items-center justify-center py-4 rounded-lg"
         style={{
           background: hex,
           color: hexToLuminance(hex) > 50 ? 'black' : 'white',

@@ -29,7 +29,7 @@ export default function Navbar({
   return (
     <nav
       class={twJoin(
-        'fixed left-0 top-0 z-30 flex h-20 w-full items-center justify-between border-b border-white-30 px-4 backdrop-blur-sm sm:px-8',
+        'fixed left-0 top-0 z-30 flex h-20 w-screen items-center justify-between border-b border-white-30 px-4 backdrop-blur-sm',
         className,
       )}
     >
