@@ -12,20 +12,25 @@ interface Props extends ClassProps {
 
 const { class: className, name, email, phone, locale = 'en' } = Astro.props;
 
-const headings = {
+const contents = {
   en: {
     contact: 'Contact',
     pages: 'Pages',
+    legal: 'Legal',
+    legalLink: 'Go to legal page',
+    homeLink: 'Go to Home page',
+    linkedin: 'Visit Felix Blaimauer on LinkedIn',
+    github: 'Open Felix Blaimauers GitHub',
   },
   de: {
     contact: 'Kontakt',
     pages: 'Seiten',
+    legal: 'Rechtliches',
+    legalLink: 'Zur Rechtlichen Seite',
+    homeLink: 'Zur Startseite',
+    linkedin: 'Felix Blaimauer auf LinkedIn besuchen',
+    github: 'Felix Blaimauers GitHub öffnen',
   },
-};
-
-const legal = {
-  en: 'Legal',
-  de: 'Rechtliches',
 };
 ---
 
@@ -37,7 +42,7 @@ const legal = {
 >
   <div>
     <h4 class="text-4xl font-semibold text-primary">
-      {headings[locale]['contact']}
+      {contents[locale]['contact']}
     </h4>
     <ul>
       <li>{name}</li>
@@ -51,10 +56,15 @@ const legal = {
         <a
           href="https://www.linkedin.com/in/felix-blaimauer-a424b22bb/"
           target="_blank"
+          aria-label={contents[locale].linkedin}
         >
           <Icon name="pajamas:linkedin" />
         </a>
-        <a href="https://www.github.com/felixBlaimauer" target="_blank">
+        <a
+          href="https://www.github.com/felixBlaimauer"
+          target="_blank"
+          aria-label={contents[locale].github}
+        >
           <Icon name="pajamas:github" />
         </a>
       </li>
@@ -63,14 +73,16 @@ const legal = {
 
   <div>
     <h4 class="text-4xl font-semibold text-primary">
-      {headings[locale]['contact']}
+      {contents[locale]['contact']}
     </h4>
     <ul>
       <li>
-        <a href={`/${locale}`}>Home</a>
+        <a aria-label={contents[locale].homeLink} href={`/${locale}`}>Home</a>
       </li>
       <li>
-        <a href={`/${locale}/legal`}>{legal[locale]}</a>
+        <a aria-label={contents[locale].legal} href={`/${locale}/legal`}
+          >{contents[locale].legal}</a
+        >
       </li>
     </ul>
   </div>
