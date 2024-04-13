@@ -19,10 +19,15 @@ const banner = await getImage({
   src: import(`./../assets/projects/${shortSlug}/banner.png`),
 });
 
-const splashSmall = import(`./../assets/projects/${shortSlug}/splash-small.png`);
+const splashSmall = import(
+  `./../assets/projects/${shortSlug}/splash-small.png`
+);
 const banner1 = import(`./../assets/projects/${shortSlug}/banner-1.png`); // wtf is this naming
 
-const href = getRelativeLocaleUrl('en', `/projects/${shortSlug}`);
+const href = getRelativeLocaleUrl(
+  Astro.currentLocale ?? 'en',
+  `/projects/${shortSlug}`
+);
 ---
 
 {
@@ -49,24 +54,19 @@ const href = getRelativeLocaleUrl('en', `/projects/${shortSlug}`);
           <div class="w-fit p-4 group-hover:bg-gradient-to-t rounded-3xl from-background/50 to-slate-900/0 to-70% my-8 sm:my-12 transition-all">
             <ProjectTitle class="text-current" small={true} {...entry.data} />
             <div class="flex gap-2 items-center mt-2">
-              <!-- @ts-ignore -->
               {entry.data.tags.map((tag) => (
                 <Tag tag={tag} />
               ))}
             </div>
           </div>
           <div class="flex justify-center gap-4 grow">
-           <Image
-              src={
-                splashSmall
-              }
+            <Image
+              src={splashSmall}
               alt={`${entry.data.title} banner`}
               class="h-56 w-auto hidden sm:block"
-            /> 
+            />
             <Image
-              src={
-                banner1
-              }
+              src={banner1}
               alt={`${entry.data.title} banner 1`}
               class="h-56 w-auto hidden lg:block"
             />
@@ -85,13 +85,13 @@ const href = getRelativeLocaleUrl('en', `/projects/${shortSlug}`);
   scroll(
     animate('.scrolltext', {
       translate: [`${scrollRate}%`, `-${scrollRate}%`],
-    }),
+    })
   );
 
   scroll(
     animate('.scrolltext-flip', {
       rotate: [180, 180],
       translate: [`-${scrollRate}%`, `${scrollRate}%`],
-    }),
+    })
   );
 </script>

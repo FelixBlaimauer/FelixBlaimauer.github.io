@@ -1,0 +1,28 @@
+---
+import { Icon } from 'astro-icon/components';
+import type { ClassProps } from '../../interfaces/ClassProps';
+
+interface Props {
+  class?: any;
+  href?: any;
+  target?: any;
+  rel?: any;
+  download?: any;
+  ref?: any;
+}
+
+const { target = '_blank', ...props } = Astro.props;
+---
+
+<a class="underline hover:text-sky-500" target={target ?? '_blank'} {...props}>
+  <slot />
+
+  {
+    target === '_blank' && (
+      <Icon
+        class="inline mb-1"
+        name="heroicons:arrow-top-right-on-square-16-solid"
+      />
+    )
+  }
+</a>

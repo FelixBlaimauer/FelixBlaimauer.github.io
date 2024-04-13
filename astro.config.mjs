@@ -24,6 +24,7 @@ export default defineConfig({
     icon({
       include: {
         heroicons: ['*'],
+        mdi: ['linkedin', 'github'],
       },
     }),
   ],

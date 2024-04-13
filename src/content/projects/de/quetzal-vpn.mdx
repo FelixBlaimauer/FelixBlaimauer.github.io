@@ -4,12 +4,21 @@ tags:
   - 'Frontend Dev'
   - 'UI / UX'
 
-description: 'OpenVPN einfach gemacht!'
+description: 'OpenVPN leicht gemacht!'
 color: '#00ff70'
 ---
 
+
 import Section from '../../../components/Section.astro';
 import H2 from '../../../components/markdown/h2.astro';
+import ColorView from '../../../components/ColorView.astro';
+import {Icon} from "astro-icon/components";
+import {Image} from 'astro:assets';
+
+import usersMobile from '../../../assets/projects/quetzal-vpn/users-mobile.png';
+import usersDesktop from '../../../assets/projects/quetzal-vpn/users-desktop.png';
+import configMobile from '../../../assets/projects/quetzal-vpn/config-mobile.png';
+import configDesktop from '../../../assets/projects/quetzal-vpn/config-desktop.png';
 
 export const components = {
   h2: H2,
@@ -18,26 +27,146 @@ export const components = {
 <Section class="text-body-lg" markdown={{list: true}} name="Beschreibung">
   ## Beschreibung
 
-  **QuetalVPN** ist eine Open Source **Web Oberfläche** für deinen **OpenVPN** server.
-  Zu den **Featuers** zählne:
+  **QuetzalVPN** ist eine kostenlose und Open Source **Web GUI** für deinen **OpenVPN** Server. **Features** sind unter anderem:
 
-  - Benutzer Management **👤**  
-  - Server Konfiguration **⚙️**
-  - Ein Dashobard **📊**
+  - Benutzerverwaltung **👤**
+  - Serverkonfiguration **⚙️**
+  - Ein Dashboard **📊**
 
-  Willst du noch mehr erfahren? Dann lese auf der <a href="https://quetzal-vpn.dev" target='_blank'>Projekt Website</a> nach.
+  Für weitere Informationen besuche die <a href="https://quetzal-vpn.dev" target='_blank'>Projekt Website</a>.
 </Section>
 
-{/* ![Quetzal Mockup](../../assets/projects/quetzal-vpn/banner-1.png) */}
+<Section class='text-body-lg text-white-90 mt-12 relative pb-8 text-center' name="Design">
 
-<Section class="text-body-lg mt-12" markdown={{list: true}} name="Details">
-  **QuetzalVPN** wurde mit einem 4-köpfigem Team der <a href="https://www.sz-ybbs.ac.at" target="_blank">IT-HTL Ybbs</a> umgesetzt.
-  Mein Aufgabengebit lag in dem **UI / UX Design** und der Umsetzung des **Frontends**.
+  ## Design
 
-  Der Quellcode ist öffentlich auf <a href="https://github.com/QuetzalVPN/quetzal-vpn" target="_blank">GitHub</a> verfügbar.
-  
-  <a href="https://github.com/RaZoD1" target="_blank">Raphael</a> war mein wichtigster **Partner** bei diesem Projekt.
-  Er war für das Backend, welches er in **Kotlin** programmierte, zuständig. Die Zusammenarbeit machte mir große Freude!
+  <div class='absolute top-2 left-0 w-full h-full flex flex-col -z-10'>
+    <div class='bg-gradient-to-b from-transparent grow to-80% to-[#00ff70]/40' />
+    <div class="bg-[#00ff70]/40 h-60 clip-circular" />
+  </div>
 
-  Das Design wurde in **Figma** erstellt und anschließend mit **React** und **TailwindCSS** für das Web gebaut.
+  <ColorView class='sm:my-12 my-8' colors={[
+    {name: 'Primär', hex: '#00ff70'}, {name: 'Warnung', hex: '#f8d40d'}, {name: 'Error', hex: '#ff3633'},
+  ]}/>
+
+  <div class='rounded-xl md:rounded-2xl slide-in-view w-fit sm:w-11/12 md:w-auto mx-auto mt-8 mb-2 overflow-hidden border border-white/20 shadow-md'> 
+    <Image alt="QuetzalVPN Screenshot" class="hidden w-full md:w-auto sm:block" src={configDesktop}/>
+    <Image alt="QuetzalVPN Mobile Screenshot" class="sm:hidden" src={configMobile}/>
+  </div>
+</Section>
+
+<Section class='mt-12' name='Components'>
+  <h4 class="text-center text-body-lg">Buttons</h4>
+  <div class="-mt-8 sm:m-0 flex flex-wrap gap-4 justify-evenly items-center scale-75">
+    <div>![Primär Button](../../../assets/projects/quetzal-vpn/components/btn-primary.svg) </div>
+    <div>![Einfacher Button](../../../assets/projects/quetzal-vpn/components/btn-grey.svg) </div>
+    <div>![Warnungs Button](../../../assets/projects/quetzal-vpn/components/btn-warning.svg) </div>
+    <div>![Error Button](../../../assets/projects/quetzal-vpn/components/btn-error.svg) </div>
+  </div>
+
+  <h4 class="text-center text-body-lg sm:mt-8">Inputs</h4>
+  <div class="flex flex-wrap gap-4 sm:m-0 mt-2 justify-evenly items-center">
+    <div>![Input fields](../../../assets/projects/quetzal-vpn/components/inputs.svg) </div>
+    <div class='scale-50'>![Schalter](../../../assets/projects/quetzal-vpn/components/toggle.svg) </div>
+    <div>![Suche](../../../assets/projects/quetzal-vpn/components/search.svg) </div>
+    <div class="scale-75">![Checkbox](../../../assets/projects/quetzal-vpn/components/checkbox.svg) </div>
+    <div>![Combobox](../../../assets/projects/quetzal-vpn/components/combobox.svg) </div>
+  </div>
+
+  <div class='flex text-center text-white-90 items-center gap-3 flex-col mt-12'>
+    <p class='text-body-lg'>Alle Komponenten sind 100% barrierefrei und wurden erstellt mit</p>
+    <div class='scale-125'>
+      ![Headless UI](../../../assets/icons/headless-ui.svg)
+    </div>
+    <div class='flex items-center gap-2 mt-1'>
+      <div class='scale-125'>
+        ![React](../../../assets/icons/react.svg)
+      </div>
+      <div class='scale-75'>
+        ![TailwindCSS](../../../assets/icons/tailwind.svg)
+      </div>
+    </div>
+  </div>
+</Section>
+
+<Section class='mt-12' name='Benutzerverwaltung'>
+
+  ## Benutzerverwaltung
+
+  <div class="relative mt-8">
+    <div class="absolute w-96 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 appear-in-view">
+      <div class="-translate-x-[114%] -translate-y-[27%]">
+        <div class="flex gap-1 items-center mt-2">
+          <Icon name="heroicons:document-arrow-down-20-solid" class='text-3xl' style={{color: '#00ff70'}} />
+          <h3 class='text-body-lg'>Profil Download</h3>
+        </div>
+
+        <p class="text-xl text-white-70">Anstatt umständlicher Shell-Skripte kann in Quetzal mit nur 1 Klick ein Profil heruntergeladen werden.</p>
+      
+        <div class="w-96 ml-24 mt-2">
+        ![Descriptor Illustration](../../../assets/descriptor.svg)
+        </div>
+      </div>
+    </div>
+
+    <div class="absolute w-96 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 appear-in-view">
+      <div class="translate-x-[140%] translate-y-[5.5rem]">
+        <div class="flex gap-1 items-center mt-2">
+          <Icon name="heroicons:user-solid" class='text-3xl' style={{color: '#00ff70'}} />
+          <h3 class='text-body-lg'>Nutzer Aktionen</h3>
+        </div>
+
+        <p class="text-xl text-white-70">Entziehe jemanden den VPN-Zugang temporär oder entferne ihn komplett.</p>
+      
+        <div class="w-96 -ml-48 mt-2 scale-x-[-1]">
+        ![Descriptor Illustration](../../../assets/descriptor.svg)
+        </div>
+        <div class="w-96 -ml-48 -mt-20 scale-x-[-1]">
+        ![Descriptor Illustration](../../../assets/descriptor.svg)
+        </div>
+      </div>
+    </div>
+
+    <div class='w-4/6 md:w-[30%] mx-auto rounded-2xl shadow overflow-hidden border border-white/20'>
+    ![Benutzerverwaltung](../../../assets/projects/quetzal-vpn/screenshot-user.png)
+    </div>
+  </div>
+
+  <div class="relative mt-16 opacity-0 appear-in-view">
+
+    <Icon name="heroicons:user-group-solid" class="-z-10 text-white/5 absolute left-1/2 -translate-x-1/2 top-12 text-9xl scale-[3]" />
+
+    <div class="sm:w-[40%] text-center mb-4 sm:mb-12 mx-auto">
+      <div class="inline-flex gap-1 items-center text-4xl">
+        <Icon name="heroicons:chart-bar-square-16-solid" class="text-[#00ff70]" />
+        <h3>Live Einblicke</h3>
+      </div>
+      <p class="text-body-sm text-white-70">Der Zustand von Usern wie ihr Verbindungsstatus und IP-Adresse wird live angezeigt.</p>
+    </div>
+
+    <div class='w-5/6 mx-auto rounded-2xl shadow slide-in-view overflow-hidden border border-white/20'>
+      <Image src={usersDesktop} alt="Quetzal Users" class="hidden sm:block" />
+      <Image src={usersMobile} alt="Quetzal Users" class="sm:hidden" />
+    </div>
+
+    <div class="mx-auto w-fit flex items-center gap-4 mt-6">
+      <p><div class="inline-block h-4 rounded -mr-2 aspect-square bg-[#00ff70]"></div> Verbunden</p>
+      <p><div class="inline-block h-4 rounded -mr-2 aspect-square bg-[#f8d40d]"></div> Untätig</p>
+      <p><div class="inline-block h-4 rounded -mr-2 aspect-square bg-[#ff3633]"></div> Deaktiviert</p>
+    </div>
+  </div>
+</Section>
+
+<Section class="text-xl mt-12" markdown={{list: true}} name="Details">
+  ## Details
+
+  Ich habe **QuetzalVPN** in einem Team von 4 Personen als Schulprojekt an der <a href="https://www.sz-ybbs.ac.at" target="_blank">IT-HTL Ybbs</a> entwickelt.
+  Mein Hauptfokus lag auf dem **Frontend** und dem **UI / UX** Design.
+
+  Die Designs wurden dabei in Figma erstellt und anschließend mit **React + TailwindCSS** umgesetzt.
+
+  Das Projekt ist Open Source und auf <a href="https://github.com/QuetzalVPN/quetzal-vpn" target="_blank">GitHub</a> frei verfügbar.
+
+  <a href="https://github.com/RaZoD1" target="_blank">Raphael</a> war mein Haupt **Kollaborateur**.
+  Er hat das Backend in **Kotlin** mit dem **Ktor** Framework geschrieben und war auch für die Serverkonfiguration und Kommunikation zuständig.
 </Section>

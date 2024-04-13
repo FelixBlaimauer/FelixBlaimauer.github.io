@@ -10,6 +10,17 @@ color: '#00aaca'
 
 import Section from '../../../components/Section.astro';
 import H2 from '../../../components/markdown/h2.astro';
+import {Icon} from "astro-icon/components";
+
+import recording from '../../../assets/projects/explore-htl/explorehtl-recording.webm';
+import leaderboard from '../../../assets/projects/explore-htl/leaderboard.svg';
+import phone from '../../../assets/projects/explore-htl/phone.svg';
+import arcore from '../../../assets/icons/ar_core.svg';
+import svelte from '../../../assets/icons/svelte.svg';
+import unity from '../../../assets/icons/unity.svg';
+
+import {Image} from 'astro:assets';
+
 
 export const components = {
   h2: H2
@@ -18,15 +29,126 @@ export const components = {
 <Section class="text-body-lg" markdown={{list: true}} name="Beschreibung">
   ## Beschreibung
 
-  **ExploreHTL** ist ein **Augmented Reality** Spiel für Smartphones.
-  Man kann die [IT-HTL Ybbs](https://www.sz-ybbs.ac.at) erkunden und über diese informiert werden.
-  An diesem Projekt habe ich gemeinsam mit <a target='_blank' href='https://hannes-scheibelauer.at'>Hannes Scheibelauer</a> gearbeitet.
+  **ExploreHTL** ist ein **Augmented Reality** Erlebnis für dein Smartphone.
+  Du kannst die [IT-HTL Ybbs](https://www.sz-ybbs.ac.at) **erkunden** und mehr über ihre Räume erfahren.
+  Für dieses Projekt habe ich mit <a target='_blank' href='https://hannes-scheibelauer.at'>Hannes Scheibelauer</a> zusammengearbeitet.
 </Section>
 
-<Section class="text-body-lg mt-12" markdown={{list: true}} name="Probier es">
-  ## Probier es aus
+<Section class="text-body-lg mt-8" name="Architektur">
+  ## Architektur
 
-  Lade dir die App gemeinsam mit den scannbaren Markierungen von <a href="https://bit.ly/explore-HTL" target="_blank">Google Drive</a> herunter.
-  Installiere das Spiel auf dienem Handy und versuche die Marker mit der App zu scannen.
+  <div class="flex items-center justify-center flex-wrap gap-16">
+    <div class="w-fit h-fit flex flex-col gap-2 justify-center items-center px-5 py-2 rounded-xl bg-white/10">
+      <p class="text-center select-none">Druck-Seiten</p>
+
+      <div class='w-full flex flex-col gap-2'>
+        <div class='h-4 rounded-full w-7/8 bg-gradient-to-tr from-white/20 to-white/30' />
+        <div class='h-4 rounded-full w-1/3 bg-gradient-to-tr from-white/20 to-white/30' />
+        <div class='h-4 rounded-full w-5/6 bg-gradient-to-br from-white/20 to-white/30' />
+      </div>
+
+      <Icon name="heroicons:qr-code-solid" class="text-9xl text-[#00aaca]" />
+    </div>
+
+    <div class="relative">
+      <Image class="w-48" src={phone} alt="Smartphone illustration" />
+
+      <div class='absolute inset-0 flex items-center flex-col justify-evenly'>
+        <Image alt="Google ARCore" class="w-24" src={arcore} />
+        <Image alt="Unity Game Engine" class="bg-white p-4 rounded-xl w-24 aspect-square" src={unity} />
+      </div>
+    </div>
+    
+    <div class="ml-2 gap-4 flex flex-col items-center">
+      ![Firebase Logo](../../../assets/icons/firebase.svg)
+
+      <span class="text-gray-300">Firebase</span>
+    </div>
+
+    <div class="scale-75">
+      ![Bestenliste](../../../assets/projects/explore-htl/leaderboard.svg)
+    </div>
+  </div>
+
+  <div class='flex flex-col gap-12 relative appear-in-view mt-24 mb-24 h-[1200px]'>
+    <div class='relative pl-8 py-4 sm:p-0 sm:absolute sm:left-12 sm:top-0 -mt-12 h-full mx-auto sm:m-0 text-center sm:text-left w-11/12 flex flex-col gap-8 justify-evenly'>
+      <div class="sm:w-96 sm:ml-24 slide-in-view">
+        <div class="flex gap-1 justify-center sm:justify-normal items-center mt-2">
+          <Icon name="heroicons:user-solid" class='text-3xl' style={{color: '#00aaca'}} />
+          <h3 class='text-body-lg'>Registrierung</h3>
+        </div>
+
+        <p class="text-xl text-white-70">Wähle einen Nicknamen aus unter welchem du auf der Bestenliste erscheinst.</p>
+      </div>
+
+      <div class="sm:w-96 sm:ml-24 slide-in-view">
+        <div class="flex gap-1 justify-center sm:justify-normal items-center mt-2">
+          <Icon name="heroicons:camera-20-solid" class='text-3xl' style={{color: '#02bbc1'}} />
+          <h3 class='text-body-lg'>Scan einen QR-Code</h3>
+        </div>
+
+        <p class="text-xl text-white-70">Such nach einem der ausgedruckten QR-Codes und scanne in mit der App.</p>
+      </div>
+
+      <div class="sm:w-96 sm:ml-24 slide-in-view">
+        <div class="flex gap-1 justify-center sm:justify-normal items-center mt-2">
+          <Icon name="heroicons:queue-list-16-solid" class='text-3xl' style={{color: '#04c7ba'}} />
+          <h3 class='text-body-lg'>Übersicht</h3>
+        </div>
+
+        <p class="text-xl text-white-70">Mach einen Blick auf deine bereits gesammelten Gegenstände und akutelles Ranking.</p>
+      </div>
+
+      <div class="sm:w-96 sm:ml-24 slide-in-view">
+        <div class="flex gap-1 justify-center sm:justify-normal items-center mt-2">
+          <Icon name="heroicons:gift-top-20-solid" class='text-3xl' style={{color: '#07dcaf'}} />
+          <h3 class='text-body-lg'>Belohnung</h3>
+        </div>
+
+        <p class="text-xl text-white-70">Als wird das Spiel am Tag der offenen Tür präsentierten, konnte man sich für das Durchspielen eine Belohnung abholen.</p>
+      </div>
+
+      <div class="sm:hidden absolute top-0 left-1 -translate-x-1/2 rounded-full w-4 h-full bg-gradient-to-b from-[#00aaca] to-[#08E6A9]" />
+    </div>
+
+    <div class="hidden sm:block absolute top-0 left-1/2 -translate-x-1/2 rounded-full w-4 h-full bg-gradient-to-b from-[#00aaca] to-[#08E6A9]" />
+
+    <video autoplay loop muted playsinline class='sm:sticky shadow top-[5.5rem] slide-in-view left-2/3 w-80 sm:w-72 mx-auto sm:m-0 rounded-2xl'>
+      <source src={recording} type='video/webm' />
+      Video wird nicht unterstützt
+    </video>
+  </div>
 </Section>
 
+<Section name='3D-Models' class='mt-48 sm:mt-56 sm:m-0' markdown={{}}>
+  <div class=' sm:w-1/2 mx-auto text-center'>
+    <div class='text-4xl justify-center p-0 flex gap-2 items-center'>
+      <Icon name="heroicons:cube-transparent-solid" class="text-[#00aaca]" />
+      <h3 class="text-white-90">3D Modelle</h3>
+    </div>
+    <p class='text-white-70 text-body-sm'>Alle 3D Modelle wurden selbst in blender modelliert. Es folgen ein paar Beispiele.</p>
+  </div>
+
+  <div class='flex justify-evenly flex-wrap gap-x-4 px-4'>
+    <div class="w-64">![Wires 3D-model](../../../assets/projects/explore-htl/models/db_uebung.png)</div>
+    <div class="w-64">![Switch 3D-model](../../../assets/projects/explore-htl/models/switch.png)</div>
+    <div class="w-64">![School utensils 3D-model](../../../assets/projects/explore-htl/models/utensils.png)</div>
+  </div>
+</Section>
+
+<Section class="mt-8" name='Bestenliste' markdown={{}}>
+  <div class='sm:w-1/2 mx-auto text-center'>
+    <div class='text-4xl justify-center p-0 flex gap-2 items-center'>
+      <Icon name="heroicons:trophy" class="text-[#00aaca]" />
+      <h3 class="text-white-90">Bestenliste</h3>
+    </div>
+    <p class='text-white-70 text-body-sm'>Zusätzlich zu der App gab es eine Bestenliste, welche auf einem Bildschirm angezeigt wurde.
+    Diese wurde als Web-App mit <a href="https://svelte.dev/" target='_blank'>Svelte <Image alt="Svelte Logo" class="inline w-fit mb-3 h-8" src={svelte} /></a> erstellt.</p>
+  </div>
+</Section>
+
+<Section class="sm:text-body-lg text-xl mt-12" markdown={{}} name="Ausprobieren">
+  ## Probier es aus!
+
+  Lade dir die Android App von <a href="https://bit.ly/explore-HTL" target="_blank">Google Drive</a> herunter und scanne die Tracking Marker.
+</Section>

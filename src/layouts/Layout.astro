@@ -1,6 +1,6 @@
 ---
 import { ViewTransitions, fade } from 'astro:transitions';
-import Footer from '../components/solid/Footer';
+import Footer from '../components/Footer.astro';
 import Navbar from '../components/solid/Navbar';
 import { getEntry } from 'astro:content';
 
@@ -185,6 +185,7 @@ const { title, blank = false } = Astro.props;
     name={personalInfo.data.name}
     email={personalInfo.data.email}
     phone={personalInfo.data.phone}
+    locale={Astro.currentLocale === 'de' ? 'de' : 'en'}
     class="mt-10"
   />
   

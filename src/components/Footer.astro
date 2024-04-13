@@ -1,0 +1,77 @@
+---
+import { twJoin } from 'tailwind-merge';
+import type { ClassProps } from '../interfaces/ClassProps';
+import { Icon } from 'astro-icon/components';
+
+interface Props extends ClassProps {
+  name: string;
+  email: string;
+  phone: string;
+  locale?: 'en' | 'de';
+}
+
+const { class: className, name, email, phone, locale = 'en' } = Astro.props;
+
+const headings = {
+  en: {
+    contact: 'Contact',
+    pages: 'Pages',
+  },
+  de: {
+    contact: 'Kontakt',
+    pages: 'Seiten',
+  },
+};
+
+const legal = {
+  en: 'Legal',
+  de: 'Rechtliches',
+};
+---
+
+<footer
+  class={twJoin(
+    'flex w-full flex-wrap gap-x-20 gap-y-4 border-t border-white-30 px-12 py-8 text-white-90 sm:justify-center md:gap-x-80',
+    className
+  )}
+>
+  <div>
+    <h4 class="text-4xl font-semibold text-primary">
+      {headings[locale]['contact']}
+    </h4>
+    <ul>
+      <li>{name}</li>
+      <li>
+        <a href={`mailto:${email}`}>{email}</a>
+      </li>
+      <li>
+        <a href={`tel:${phone}`}>{phone}</a>
+      </li>
+      <li class="flex gap-2 justify-center mt-2 text-xl">
+        <a
+          href="https://www.linkedin.com/in/felix-blaimauer-a424b22bb/"
+          target="_blank"
+        >
+          <Icon name="pajamas:linkedin" />
+        </a>
+        <a href="https://www.github.com/felixBlaimauer" target="_blank">
+          <Icon name="pajamas:github" />
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div>
+    <h4 class="text-4xl font-semibold text-primary">
+      {headings[locale]['contact']}
+    </h4>
+    <ul>
+      <li>
+        <a href={`/${locale}`}>Home</a>
+      </li>
+      <li>
+        <a href={`/${locale}/legal`}>{legal[locale]}</a>
+      </li>
+    </ul>
+  </div>
+</footer>

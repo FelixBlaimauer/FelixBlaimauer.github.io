@@ -20,7 +20,7 @@ export default function Navbar({
       { name: 'Contact', path: `/${locale}#contact` },
     ],
     de: [
-      { name: 'Über', path: `/${locale}#über` },
+      { name: 'Über', path: `/${locale}#ueber` },
       { name: 'Projekte', path: `/${locale}#projekte` },
       { name: 'Kontakt', path: `/${locale}#kontakt` },
     ],
@@ -29,7 +29,7 @@ export default function Navbar({
   return (
     <nav
       class={twJoin(
-        'fixed left-0 top-0 z-30 flex h-20 w-screen items-center justify-between border-b border-white-30 px-4 backdrop-blur-sm',
+        'fixed left-0 top-0 z-30 flex h-20 w-[calc(100vw-(100vw-100%))] items-center justify-between border-b border-white-30 px-4 backdrop-blur-sm',
         className,
       )}
     >
