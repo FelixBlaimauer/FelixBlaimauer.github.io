@@ -7,6 +7,7 @@ import { getEntry } from 'astro:content';
 
 interface Props {
   title: string;
+  description?: string;
   blank?: boolean;
 }
 
@@ -14,15 +15,28 @@ const personalInfo = await getEntry('personal', 'info');
 
 const isProd = import.meta.env.PROD;
 
-const { title: titlePrefix, blank = false } = Astro.props;
+const { title: titlePrefix, description, blank = false } = Astro.props;
 
 const seo = {
   title: `${titlePrefix} | Felix Blaimauer`,
 };
+
+const content = {
+  en: {
+    description: `I'm an aspiring austrian multimedia creator, spezializing in full-stack web development, photo- / videography and graphic design.`,
+    twitter: `Felix Blaimauer - Austrian Multimedia Creator`
+  },
+  de: {
+    description: `Ich bin ein aufstrebender österreichischer Multimedia-Designer, spezialisiert auf Full-Stack-Webentwicklung, Foto-, sowie Videografie und Grafikdesign.`,
+    twitter: `Felix Blaimauer - Österreichischer Multimedia-Designer`
+  }
+}
+
+const locale = Astro.currentLocale === 'de' ? 'de' : 'en';
 ---
 
 <!doctype html>
-<html lang={Astro.currentLocale ?? 'en'}>
+<html lang={locale}>
   <head>
     {
       isProd && (
@@ -40,20 +54,20 @@ const seo = {
 
   <SEO
     title={seo.title}
-    description='Felix Blaimauer, Multimedia creator from Austria'
+    description={description ?? content[locale].description}
     openGraph={{
       basic: {
         title: seo.title,
         type: 'website',
-        image: '' //TODO: Add image
+        image: '/assets/meta-image.png'
       }
     }}
-    extend={{
-      meta: [
-        {
-
-        }
-      ],
+    extend={{}}
+    twitter={{
+      card: 'summary_large_image',
+      title: seo.title,
+      description: content[locale].twitter,
+      image: '/assets/meta-image.png'
     }}
     charset="utf-8"
     languageAlternates={[
@@ -69,9 +83,9 @@ const seo = {
   /> 
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="any" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <meta name="generator" content={Astro.generator} />
-  <!-- <ViewTransitions  /> -->
 
   <style is:global>
     @font-face {

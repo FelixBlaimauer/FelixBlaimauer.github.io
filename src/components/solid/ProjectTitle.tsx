@@ -27,7 +27,7 @@ export default function ProjectTitle({
       {h1 ? (
         <h1 class={computeClass}>{title}</h1>
       ) : (
-        <h4 class={computeClass}>{title}</h4>
+        <p class={computeClass}>{title}</p>
       )}
       <div
         class={`flex justify-between ${

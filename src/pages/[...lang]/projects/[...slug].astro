@@ -28,7 +28,7 @@ const splashSmall = import(`../../../assets/projects/${slug}/splash-small.png`);
 const splashLarge = import(`../../../assets/projects/${slug}/splash-large.png`);
 ---
 
-<Layout title={entry.data.title}>
+<Layout title={entry.data.title} description={entry.data.metaDescription}>
   <div class="relative mt-28">
     <GradientBackground color={entry.data.color} />
     <ProjectTitle
@@ -46,12 +46,7 @@ const splashLarge = import(`../../../assets/projects/${slug}/splash-large.png`);
       />
     </div>
 
-    <!-- <Section class="mt-12 px-20" name="Details"> -->
-    <!-- <h2 class="font-medium text-6xl">Details</h2> -->
-    <!-- <CustomMarkdown class="text-body-lg"> -->
     <Content />
-    <!-- </CustomMarkdown> -->
-    <!-- </Section> -->
   </div>
 </Layout>
 
