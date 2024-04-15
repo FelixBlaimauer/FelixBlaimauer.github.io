@@ -81,7 +81,7 @@ const locale = Astro.currentLocale === 'de' ? 'de' : 'en';
       }
     ]}
   /> 
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="any" />
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
@@ -141,7 +141,7 @@ const locale = Astro.currentLocale === 'de' ? 'de' : 'en';
     }
 
     body {
-      width: 100vw;
+      width: calc(100vw - (100vw - 100%));
       @apply overflow-x-hidden bg-background text-white-90;
     }
 
@@ -213,7 +213,7 @@ const locale = Astro.currentLocale === 'de' ? 'de' : 'en';
 </head>
 <body>
   <!-- @ts-ignore -->
-  {!blank && <Navbar locale={Astro.currentLocale} />}
+  {!blank && <Navbar client:load locale={Astro.currentLocale} />}
   
   <div
     class="hidden sm:block top-0 left-0 fixed h-6 aspect-square will-change-transform rounded-full border border-white-90 z-50  duration-200 transition-all pointer-events-none"

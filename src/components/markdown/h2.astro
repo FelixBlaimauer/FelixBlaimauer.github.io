@@ -4,9 +4,51 @@ import type { ClassProps } from '../../interfaces/ClassProps';
 
 interface Props extends ClassProps {}
 
+// function slugify(str: string): string {
+//   str = str.replace(/^\s+|\s+$/g, ''); // trim leading/trailing white space
+//   str = str.toLowerCase(); // convert string to lowercase
+//   str = str
+//     .replace(/[^a-z0-9 -]/g, '') // remove any non-alphanumeric characters
+//     .replace(/\s+/g, '-') // replace spaces with hyphens
+//     .replace(/-+/g, '-'); // remove consecutive hyphens
+//   return str;
+// }
+
 const { class: className } = Astro.props;
+
+// const href = slugify(await Astro.slots.render('default'));
 ---
 
 <h2 class={twMerge('font-medium text-5xl sm:text-6xl mb-4 w-fit', className)}>
   <slot />
 </h2>
+
+<!-- <div
+  class={twMerge(
+    'group flex items-center gap-2 pt-24 -mt-24 font-medium text-5xl sm:text-6xl mb-4 w-fit',
+    className
+  )}
+  id={href}
+>
+  <h2 class="w-fit h-fit m-0 p-0">
+    <slot />
+  </h2>
+  <Icon
+    data-href={href}
+    name="heroicons:link-20-solid"
+    class="heading-link opacity-0 group-hover:cursor-pointer cursor-custom group-hover:opacity-100 transition-opacity delay-100 group-hover:delay-300 text-current"
+  />
+</div>
+
+<script>
+  const link = document.querySelectorAll('.heading-link');
+  console.log('link', link);
+  link.forEach((el) => {
+    el.addEventListener('click', () => {
+      const href = el.getAttribute('data-href');
+      navigator.clipboard.writeText(
+        `${window.location.origin}${window.location.pathname}#${href}`
+      );
+    });
+  });
+</script> -->
