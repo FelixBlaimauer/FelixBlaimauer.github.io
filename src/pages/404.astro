@@ -1,15 +1,13 @@
 ---
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
+
+import NotFound from '../assets/not_found.svg';
 ---
 
 <Layout title="Not Found" blank={true}>
   <div class="mt-[12vh] flex flex-col items-center">
-    <Image
-      alt="Not found illustration"
-      src={import('./../assets/not_found.svg')}
-      width={340}
-    />
+    <Image alt="Not found illustration" src={NotFound} width={340} />
     <h1 class="text-display-xl font-semibold text-primary">404, Not Found</h1>
     <p class="text-body-sm">
       Sorry, the page you're looking for doesn't exist.
