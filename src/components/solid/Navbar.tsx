@@ -32,7 +32,7 @@ export default function Navbar({
     <>
       <nav
         class={twJoin(
-          'fixed left-0 top-0 z-30 flex h-20 w-[calc(100vw-(100vw-100%))] items-center justify-between border-b border-white-30 px-4 backdrop-blur-sm',
+          'fixed left-0 top-0 z-30 flex h-20 w-[calc(99vw-(100vw-100%))] items-center justify-between border-b border-white-30 px-4 backdrop-blur-sm',
           className,
         )}
       >
@@ -72,7 +72,7 @@ export default function Navbar({
       </nav>
       {modalOpen() && (
         <>
-          <div class="fixed left-0 right-0 top-0 z-50 h-fit border-b-2 border-white/20 bg-background/40 p-4 text-white-90-opaque backdrop-blur-lg">
+          <div class="fixed -top-10 left-0 right-0 z-50 h-fit border-b-2 border-white/20 bg-background/40 p-4 pt-14 text-white-90-opaque backdrop-blur-md">
             <p class="text-center text-4xl font-semibold text-primary">
               Navigation
             </p>

@@ -58,7 +58,11 @@ const indicatorGradient =
       class="sm:absolute sm:bottom-8 rounded-3xl sm:left-10 p-4 m-4 sm:m-0 sm:p-8 bg-gradient-to-tr sm:bg-gradient-to-tr from-white/5 sm:from-background/60 to-background/0 to-50% px-3 flex flex-col text-5xl sm:text-7xl lg:text-display-xl font-semibold text-white-30-opaque leading-tighter mt-24 sm:mt-60"
     >
       <span class="text-primary">Felix Blaimauer</span>
-      <NavLink opaque={false} text="Web Dev & Design" />
+      <NavLink
+        opaque={false}
+        class="sm:max-w-none max-w-[200px]"
+        text="Web Dev & Design"
+      />
       <NavLink opaque={false} text="Photo & Video" />
       <NavLink opaque={false} text="Multimedia" />
     </div>
