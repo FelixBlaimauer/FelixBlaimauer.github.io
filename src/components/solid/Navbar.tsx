@@ -32,7 +32,7 @@ export default function Navbar({
     <>
       <nav
         class={twJoin(
-          'fixed left-0 top-0 z-30 flex h-20 w-[calc(99vw-(100vw-100%))] items-center justify-between border-b border-white-30 px-4 backdrop-blur-sm',
+          'fixed left-0 top-0 z-30 flex h-20 w-[calc(100vw-(100vw-100%))] items-center justify-between border-b border-white-30 px-4 backdrop-blur-sm',
           className,
         )}
       >
