@@ -9,13 +9,14 @@ interface Props {
   title: string;
   description?: string;
   blank?: boolean;
+  noindex?: boolean;
 }
 
 const personalInfo = await getEntry('personal', 'info');
 
 const isProd = import.meta.env.PROD;
 
-const { title: titlePrefix, description, blank = false } = Astro.props;
+const { title: titlePrefix, description, noindex = false,  blank = false } = Astro.props;
 
 const seo = {
   title: `${titlePrefix} | Felix Blaimauer`,
@@ -55,6 +56,7 @@ const locale = Astro.currentLocale === 'de' ? 'de' : 'en';
   <SEO
     title={seo.title}
     description={description ?? content[locale].description}
+    {noindex}
     openGraph={{
       basic: {
         title: seo.title,
@@ -85,6 +87,7 @@ const locale = Astro.currentLocale === 'de' ? 'de' : 'en';
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="any" />
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="sitemap" href="/sitemap-index.xml" />
   <meta name="generator" content={Astro.generator} />
 
   <style is:global>
