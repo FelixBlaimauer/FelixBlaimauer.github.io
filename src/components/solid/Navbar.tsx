@@ -32,7 +32,7 @@ export default function Navbar({
     <>
       <nav
         class={twJoin(
-          'fixed left-0 top-0 z-30 flex h-20 w-[calc(100vw-(100vw-100%))] items-center justify-between border-b border-white/30 px-4 backdrop-blur-sm',
+          'fixed left-0 top-0 z-30 flex h-20 w-[calc(100vw-(100vw-100%))] items-center justify-between border-b border-white-30 px-4 backdrop-blur-sm',
           className,
         )}
       >
@@ -40,7 +40,7 @@ export default function Navbar({
           href={`/${locale}`}
           class="cursor-custom z-10 h-[38pt] cursor-none overflow-hidden"
         >
-          <div class="flex flex-col text-body-sm font-extrabold leading-[96%] text-white/70 transition hover:-translate-y-1/3 hover:text-white/90">
+          <div class="flex flex-col text-body-sm font-extrabold leading-tighter text-white-70 transition hover:-translate-y-1/3 hover:text-white-90">
             <span>Felix</span>
             <span>Blaimauer</span>
             <span>Felix</span>
@@ -53,7 +53,7 @@ export default function Navbar({
               {(route) => (
                 <a
                   href={route.path}
-                  class="hidden text-xl font-medium text-white/90-opaque sm:inline"
+                  class="hidden text-xl font-medium text-white-90-opaque sm:inline"
                 >
                   <NavLink text={route.name} />
                 </a>
@@ -62,7 +62,7 @@ export default function Navbar({
             <button
               type="button"
               aria-label="Opens more navigation links"
-              class="inline text-xl font-medium text-white/90 sm:hidden"
+              class="inline text-xl font-medium text-white-90 sm:hidden"
               onClick={() => setModalOpen(true)}
             >
               MORE
