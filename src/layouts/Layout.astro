@@ -214,7 +214,7 @@ const locale = Astro.currentLocale === 'de' ? 'de' : 'en';
     }
   </style>
 </head>
-<body>
+<body class="max-w-[1920px] mx-auto">
   <!-- @ts-ignore -->
   {!blank && <Navbar client:load locale={Astro.currentLocale} />}
   
