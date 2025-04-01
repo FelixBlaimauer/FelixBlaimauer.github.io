@@ -32,11 +32,11 @@ const href = getRelativeLocaleUrl(
 
 {
   entry && (
-    <li class="border-y border-white-30 relative group text-white-90-opaque cursor-custom overflow-x-clip">
+    <li class="border-y border-white/30 relative group text-white-90-opaque cursor-custom overflow-x-clip">
       <a {href}>
-        <div class="absolute font-bold text-white-30 select-none inset-0 bg-white/30 -z-10 my-auto">
+        <div class="absolute font-bold text-white/30 select-none inset-0 bg-white/30 -z-10 my-auto">
           <div class="absolute inset-0 bg-gradient-to-r from-25% from-background to-background/60 z-10" />
-          <div class="-z-10 flex flex-col justify-evenly h-full text-[80pt] leading-tighter group-hover:opacity-0 transition-opacity">
+          <div class="-z-10 flex flex-col justify-evenly h-full text-[80pt] leading-[96%] group-hover:opacity-0 transition-opacity">
             <p class="scrolltext">
               {entry.data.title.toUpperCase().repeat(10)}
             </p>
@@ -52,7 +52,7 @@ const href = getRelativeLocaleUrl(
         <div class="absolute inset-0 bg-gradient-to-r -z-10 from-background/60 to-background/0 from-10% to-60% sm:to-40% group-hover:opacity-100 opacity-0 transition-opacity" />
         <div class="flex items-center px-3 sm:px-6 md:px-12">
           <div class="w-fit p-4 group-hover:bg-gradient-to-t rounded-3xl from-background/50 to-slate-900/0 to-70% my-8 sm:my-12 transition-all">
-            <ProjectTitle class="text-current" small={true} {...entry.data} />
+            <ProjectTitle class="text-current" small={true} title={entry.data.title ?? ''} description={entry.data.description ?? ''} />
             <div class="flex gap-2 items-center mt-2">
               {entry.data.tags.map((tag) => (
                 <Tag tag={tag} />
