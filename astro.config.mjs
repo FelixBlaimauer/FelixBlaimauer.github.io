@@ -1,16 +1,21 @@
 import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
 import solidJs from '@astrojs/solid-js';
 import mdx from '@astrojs/mdx';
 import icon from 'astro-icon';
 import playformInline from '@playform/inline';
 import playformCompress from '@playform/compress';
+import tailwindcss from '@tailwindcss/vite'
 
 import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://felix-blaimauer.me',
+  vite: {
+    plugins: [
+      tailwindcss()
+    ]
+  },
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'de'],
@@ -19,7 +24,6 @@ export default defineConfig({
     },
   },
   integrations: [
-    tailwind(),
     solidJs({
       include: ['**/solid/**'],
     }),

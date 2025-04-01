@@ -1,0 +1,134 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-primary: #f2b413;
+  --color-secondary: #39742e;
+  --color-accent: #49b692;
+  --color-background: #1d1d1d;
+  --color-white-90-opaque: #e8e8e8;
+  --color-white-30-opaque: #666666;
+
+  --text-body-sm: 19pt;
+  --text-body-lg: 22pt;
+  --text-display-xl: 64pt;
+
+  --font-sans: 'Outfit', 'sans-serif';
+}
+
+@font-face {
+  font-family: 'Outfit';
+  src: url('/fonts/Outfit/Outfit-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Outfit';
+  src: url('/fonts/Outfit/Outfit-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Outfit';
+  src: url('/fonts/Outfit/Outfit-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Outfit';
+  src: url('/fonts/Outfit/Outfit-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+::selection,
+::-moz-selection {
+  @apply bg-primary/10;
+}
+
+:target::before {
+  content: '';
+  display: block;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  width: calc(100vw- (100vw-100%));
+  @apply overflow-x-hidden bg-background text-white/90;
+}
+
+.animated-logo rect {
+  animation: anim-logo-gradient 3s infinite linear;
+}
+
+.markdown strong {
+  @apply font-medium;
+  @apply text-white/90;
+}
+
+.markdown h2 {
+  @apply text-5xl font-medium text-white/90 sm:text-6xl;
+}
+
+.markdown.title-md h2 {
+  @apply text-6xl font-semibold text-primary sm:text-display-xl;
+}
+
+.markdown a {
+  position: relative;
+}
+
+.markdown a:after {
+  content: '';
+  position: absolute;
+  width: min(max(10%, 10px), 100%);
+  marign: 0 auto;
+  left: 0;
+  bottom: -2%;
+  height: 3px;
+  @apply bg-current transition-all;
+}
+
+.markdown a:hover {
+  color: white;
+}
+
+.markdown a:hover:after {
+  @apply w-full;
+}
+
+.reveal-thing {
+  opacity: 0;
+}
+
+.clip-circular {
+  clip-path: ellipse(55% 70% at 50% 25%);
+}
+
+.appear-in-view .slide-in-view {
+  opacity: 0;
+}
+
+@keyframes anim-logo-gradient {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-166%);
+  }
+}
