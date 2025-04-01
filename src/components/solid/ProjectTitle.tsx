@@ -18,7 +18,7 @@ export default function ProjectTitle({
 }: ProjectTitleProps) {
   const computeClass = twJoin(
     className,
-    'w-fit p-0 text-white/90 font-semibold leading-[96%]',
+    'w-fit p-0 text-white-90 font-semibold leading-tighter',
     small ? 'text-5xl' : 'text-6xl md:text-display-xl',
   );
 
@@ -32,7 +32,7 @@ export default function ProjectTitle({
       <div
         class={`flex justify-between ${
           small ? 'text-lg' : 'mt-1 text-3xl'
-        } text-white/70`}
+        } text-white-70`}
       >
         <For each={description.split(' ')}>{(word) => <span>{word}</span>}</For>
       </div>

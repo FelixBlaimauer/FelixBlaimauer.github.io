@@ -1,9 +1,8 @@
 ---
-import { ClientRouter, fade } from 'astro:transitions';
+import { ViewTransitions, fade } from 'astro:transitions';
 import Footer from '../components/Footer.astro';
 import Navbar from '../components/solid/Navbar';
 import {SEO} from 'astro-seo';
-import '../styles/global.css';
 import { getEntry } from 'astro:content';
 
 interface Props {
@@ -38,7 +37,7 @@ const locale = Astro.currentLocale === 'de' ? 'de' : 'en';
 ---
 
 <!doctype html>
-<html lang={locale} transition:name="root" transition:animate="fade">
+<html lang={locale}>
   <head>
     {
       isProd && (
@@ -91,7 +90,129 @@ const locale = Astro.currentLocale === 'de' ? 'de' : 'en';
   <link rel="sitemap" href="/sitemap-index.xml" />
   <meta name="generator" content={Astro.generator} />
 
-  <ClientRouter  />
+  <style is:global>
+    @font-face {
+      font-family: 'Outfit';
+      src: url('/fonts/Outfit/Outfit-Regular.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Outfit';
+      src: url('/fonts/Outfit/Outfit-Medium.ttf') format('truetype');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Outfit';
+      src: url('/fonts/Outfit/Outfit-SemiBold.ttf') format('truetype');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Outfit';
+      src: url('/fonts/Outfit/Outfit-Bold.ttf') format('truetype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    ::selection, ::-moz-selection {
+      @apply bg-primary/10;
+    }
+
+    :target::before {
+      content: '';
+      display: block;
+      /* height: 100px; */
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+
+    body {
+      width: calc(100vw-(100vw-100%));
+      @apply overflow-x-hidden bg-background text-white-90;
+    }
+
+    /* section {
+        opacity: 0;
+      } */
+
+    .animated-logo rect {
+      animation: anim-logo-gradient 3s infinite linear;
+    }
+
+    .markdown strong {
+      @apply font-medium;
+      @apply text-white-90;
+    }
+
+    .markdown h2 {
+      @apply text-white-90 font-medium text-5xl sm:text-6xl;
+    }
+
+    .markdown.title-md h2 {
+      @apply text-primary font-semibold text-6xl sm:text-display-xl;
+    }
+
+    .markdown a {
+      position: relative;
+    }
+
+    .markdown a:after {
+      content: '';
+      position: absolute;
+      width: min(max(10%, 10px), 100%);
+      marign: 0 auto;
+      left: 0;
+      bottom: -2%;
+      height: 3px;
+      @apply bg-current transition-all;
+    }
+
+    .markdown a:hover {
+      color: white;
+    }
+
+    .markdown a:hover:after {
+      @apply w-full;
+    }
+
+    .reveal-thing {
+      opacity: 0;
+    }
+
+    .clip-circular {
+      clip-path: ellipse(55% 70% at 50% 25%);
+    }
+
+    .appear-in-view .slide-in-view {
+      opacity: 0;
+    }
+
+    @keyframes anim-logo-gradient {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-166%);
+      }
+    }
+  </style>
 </head>
 <body class="max-w-[1920px] mx-auto">
   <!-- @ts-ignore -->
@@ -107,9 +228,9 @@ const locale = Astro.currentLocale === 'de' ? 'de' : 'en';
   <slot />
   
   <Footer
-    name={personalInfo?.data.name ?? ''}
-    email={personalInfo?.data.email ?? ''}
-    phone={personalInfo?.data.phone ?? ''}
+    name={personalInfo.data.name}
+    email={personalInfo.data.email}
+    phone={personalInfo.data.phone}
     locale={Astro.currentLocale === 'de' ? 'de' : 'en'}
     class="mt-10"
   />
@@ -127,7 +248,6 @@ const locale = Astro.currentLocale === 'de' ? 'de' : 'en';
       });
 
       inView('.slide-in-view', ({target}) => {
-        console.log('hellll')
         animate(target, {
           opacity: [0, 1],
           transform: ['translateY(50px)', 'translateY(0)'],
@@ -143,7 +263,6 @@ const locale = Astro.currentLocale === 'de' ? 'de' : 'en';
     let lastY = 0;
 
     const moveCursor = (e?: MouseEvent, duration: number = 300) => {
-      console.log(cursor);
       if (!cursor) return;
 
       lastX = e?.clientX ?? lastX;
@@ -161,11 +280,7 @@ const locale = Astro.currentLocale === 'de' ? 'de' : 'en';
       );
     };
     
-    console.log('test 2 2 2 sktjseltjesl')
-    window.addEventListener('mousemove', (e) => {
-      console.log('test sktjseltjesl')
-      moveCursor(e)
-    });
+    window.addEventListener('mousemove', (e) => moveCursor(e));
 
     if (cursor != null) {
       cursorIndicator.forEach((el) => {
